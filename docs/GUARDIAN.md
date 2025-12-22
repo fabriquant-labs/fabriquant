@@ -1,8 +1,8 @@
-# Aegis Guardian - Security Layer Documentation
+# Guardian - Security Layer Documentation
 
 ## Overview
 
-Aegis Guardian is the safety layer of the Aegis Flow SDK, designed to prevent unauthorized drain, excessive slippage, and malicious operations in Solana transactions. It provides real-time security pattern detection and configurable validation rules.
+Guardian is the safety layer of the Fabricant SDK, designed to prevent unauthorized drain, excessive slippage, and malicious operations in Solana transactions. It provides real-time security pattern detection and configurable validation rules.
 
 ## Features
 
@@ -17,13 +17,13 @@ Aegis Guardian is the safety layer of the Aegis Flow SDK, designed to prevent un
 ## Installation
 
 ```bash
-npm install @aegis-flow/sdk
+npm install @fabricant/sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import { Guardian } from '@aegis-flow/sdk';
+import { Guardian } from '@fabricant/sdk';
 
 // Create a Guardian with default configuration
 const guardian = new Guardian();
@@ -253,7 +253,7 @@ Clears the warning history.
 ### Basic Validation
 
 ```typescript
-import { Guardian } from '@aegis-flow/sdk';
+import { Guardian } from '@fabricant/sdk';
 
 const guardian = new Guardian({
   maxSlippage: 1.0,
@@ -336,18 +336,18 @@ warnings.forEach(warning => {
 });
 ```
 
-## Integration with AegisFlow
+## Integration with Fabricant
 
 ```typescript
-import { AegisFlow, Guardian } from '@aegis-flow/sdk';
+import { Fabricant, Guardian } from '@fabricant/sdk';
 
 const guardian = new Guardian({
   maxSlippage: 1.0,
   emergencyStop: false,
 });
 
-// Guardian is automatically used by AegisFlow.execute()
-await AegisFlow.execute(tx, { guardian });
+// Guardian is automatically used by Fabricant.execute()
+await Fabricant.execute(tx, { guardian });
 ```
 
 ## Best Practices
@@ -367,14 +367,14 @@ import type {
   ValidationResult,
   SecurityWarning,
   ValidationRule,
-} from '@aegis-flow/sdk';
+} from '@fabricant/sdk';
 
 // Pattern IDs
-import { PatternId } from '@aegis-flow/sdk';
+import { PatternId } from '@fabricant/sdk';
 // PatternId.MintKill, FreezeKill, SignerMismatch, DangerousClose
 
 // Severity Levels
-import { Severity } from '@aegis-flow/sdk';
+import { Severity } from '@fabricant/sdk';
 // Severity.Critical, Warning, Alert
 ```
 
@@ -403,6 +403,6 @@ MIT License - see [LICENSE](../LICENSE) for details.
 
 ## Support
 
-- GitHub Issues: https://github.com/psyto/aegisflow/issues
-- Documentation: https://docs.aegis-flow.io
+- GitHub Issues: https://github.com/psyto/fabricant/issues
+- Documentation: https://github.com/psyto/fabricant
 - Twitter: https://x.com/psyto

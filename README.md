@@ -1,18 +1,18 @@
-# 🛡️ Aegis Flow: The Autonomous Execution Stack for Solana
+# 🛡️ Fabricant: The Autonomous Execution Stack for Solana
 
 **Secure. Parallel. Optimized. The foundational infrastructure for AI Agents and Autonomous Protocols on Solana.**
 
-[Documentation](https://docs.aegis-flow.io) | [X (Twitter)](https://x.com/psyto) | [Whitepaper](https://aegis-flow.io/whitepaper)
+[Documentation](https://github.com/psyto/fabricant) | [X (Twitter)](https://x.com/psyto)
 
 ---
 
 ## 🚀 Mission
-To unlock the full potential of Solana’s parallel execution (Sealevel) while providing "Military-Grade Security" for autonomous programs. Aegis Flow bridges the gap between raw blockchain performance and the safety requirements of AI-driven finance.
+To unlock the full potential of Solana's parallel execution (Sealevel) while providing "Military-Grade Security" for autonomous programs. Fabricant bridges the gap between raw blockchain performance and the safety requirements of AI-driven finance.
 
-## 📦 The Aegis Stack
-Aegis Flow integrates high-performance modular components into a unified execution OS for developers.
+## 📦 The Fabricant Stack
+Fabricant integrates high-performance modular components into a unified execution OS for developers.
 
-### 1. 🛡️ Aegis Guardian (Core: `sol-ops-guard`)
+### 1. 🛡️ Guardian (Core: `sol-ops-guard`)
 **The Safety Layer.**
 Prevents unauthorized drain, excessive slippage, or malicious CPI calls in real-time.
 - Deterministic runtime constraints for autonomous agents.
@@ -43,15 +43,15 @@ Structures on-chain data in milliseconds, providing the "Ground Truth" for agent
 ### Installation
 
 ```bash
-npm install @aegis-flow/sdk
+npm install @fabricant/sdk
 # or
-yarn add @aegis-flow/sdk
+yarn add @fabricant/sdk
 ```
 
 ### Usage
 
 ```typescript
-import { AegisFlow, Guardian, FlowEngine } from '@aegis-flow/sdk';
+import { Fabricant, Guardian, FlowEngine } from '@fabricant/sdk';
 
 // 1. Initialize the Safety Guard to protect assets
 const guardian = new Guardian({
@@ -67,7 +67,7 @@ const tx = await FlowEngine.build({
 });
 
 // 3. Execute with Military-Grade Protection
-await AegisFlow.execute(tx, { guardian });
+await Fabricant.execute(tx, { guardian });
 ```
 
 > **Note:** The SDK is currently in active development. Core functionality is being integrated from standalone repositories.
@@ -79,7 +79,7 @@ await AegisFlow.execute(tx, { guardian });
 * [x] **Phase 1.0: SDK Foundation** ✅ - TypeScript SDK structure with build tooling, testing, and core module scaffolding.
 * [ ] **Phase 1.1: SDK Integration** - Integrating functionality from standalone repos (`sol-ops-guard`, `x-liquidity-engine`, etc.).
 * [ ] **Phase 2: Agent Connect** - Official plugins for major AI frameworks (ElizaOS, Rig, etc.).
-* [ ] **Phase 3: Aegis Vaults** - Launching autonomous, AI-managed high-yield index products.
+* [ ] **Phase 3: Fabricant Vaults** - Launching autonomous, AI-managed high-yield index products.
 * [ ] **Phase 4: Decentralized Governance** - Transitioning to a DAO-led security registry based on Guardian logic.
 
 ---
@@ -90,7 +90,7 @@ await AegisFlow.execute(tx, { guardian });
 
 ```
 src/
-├── core/          # AegisFlow main execution class
+├── core/          # Fabricant main execution class
 ├── guardian/      # Safety Layer (sol-ops-guard integration)
 ├── flow-engine/   # Liquidity Layer (x-liquidity-engine integration)
 ├── fabric/        # Performance Layer (solfabric integration)
@@ -103,8 +103,8 @@ src/
 
 ```bash
 # Clone the repository
-git clone https://github.com/psyto/aegisflow.git
-cd aegisflow
+git clone https://github.com/psyto/fabricant.git
+cd fabricant
 
 # Install dependencies
 npm install

@@ -1,10 +1,10 @@
 /**
- * @aegis-flow/sdk
+ * @fabricant/sdk
  * The Autonomous Execution Stack for Solana
  */
 
 // Core
-export { AegisFlow } from './core/aegis-flow';
+export { Fabricant } from './core/fabricant';
 
 // Components
 export { Guardian, PatternId, Severity } from './guardian';
@@ -14,7 +14,7 @@ export { PulsarInsight } from './pulsar';
 
 // Types
 export type {
-  AegisFlowConfig,
+  FabricantConfig,
   GuardianConfig,
   FlowEngineConfig,
   Transaction,

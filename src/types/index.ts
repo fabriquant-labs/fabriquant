@@ -1,8 +1,8 @@
 /**
- * Core types for the Aegis Flow SDK
+ * Core types for the Fabricant SDK
  */
 
-export interface AegisFlowConfig {
+export interface FabricantConfig {
   network?: 'mainnet-beta' | 'devnet' | 'testnet';
   rpcUrl?: string;
 }

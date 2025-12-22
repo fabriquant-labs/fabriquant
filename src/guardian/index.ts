@@ -1,5 +1,5 @@
 /**
- * Aegis Guardian - The Safety Layer
+ * Guardian - The Safety Layer
  * Prevents unauthorized drain, excessive slippage, or malicious CPI calls in real-time.
  */
 

@@ -11,7 +11,7 @@ import {
   Severity,
   type Transaction,
   type ValidationResult,
-} from '@aegis-flow/sdk';
+} from '@fabricant/sdk';
 
 // Example 1: Basic Guardian with Default Configuration
 function basicGuardian() {

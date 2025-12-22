@@ -1,14 +1,14 @@
 /**
- * Core AegisFlow class for executing protected transactions
+ * Core Fabricant class for executing protected transactions
  */
 
-import type { AegisFlowConfig, Transaction } from '../types';
+import type { FabricantConfig, Transaction } from '../types';
 import type { Guardian } from '../guardian';
 
-export class AegisFlow {
-  private config: AegisFlowConfig;
+export class Fabricant {
+  private config: FabricantConfig;
 
-  constructor(config: AegisFlowConfig = {}) {
+  constructor(config: FabricantConfig = {}) {
     this.config = {
       network: config.network || 'mainnet-beta',
       rpcUrl: config.rpcUrl,
@@ -32,7 +32,7 @@ export class AegisFlow {
     return { ...tx, status: 'executed' };
   }
 
-  public getConfig(): AegisFlowConfig {
+  public getConfig(): FabricantConfig {
     return this.config;
   }
 }
