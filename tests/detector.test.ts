@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { analyzeTransaction } from '../src/guardian/detector';
+import { analyzeTransaction } from '../src/guard/detector';
 import { PatternId, Severity } from '../src/types';
 import type { Transaction } from '../src/types';
 

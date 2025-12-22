@@ -3,7 +3,7 @@
  */
 
 import type { FabricantConfig, Transaction } from '../types';
-import type { Guard } from '../guardian';
+import type { Guard } from '../guard';
 
 export class Fabricant {
   private config: FabricantConfig;

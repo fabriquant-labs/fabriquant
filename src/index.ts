@@ -7,8 +7,8 @@
 export { Fabricant } from './core/fabricant';
 
 // Components
-export { Guard, PatternId, Severity } from './guardian';
-export { Loom } from './flow-engine';
+export { Guard, PatternId, Severity } from './guard';
+export { Loom } from './loom';
 export { FabricCore } from './fabric';
 export { PulsarIndex } from './pulsar';
 

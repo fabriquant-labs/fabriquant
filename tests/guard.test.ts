@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { Guard, PatternId, Severity } from '../src/guardian';
+import { Guard, PatternId, Severity } from '../src/guard';
 import type { Transaction } from '../src/types';
 
 describe('Guard (Fabric Guard)', () => {
