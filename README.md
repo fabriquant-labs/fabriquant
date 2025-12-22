@@ -71,8 +71,8 @@ import { Fabricant, Guard, Loom } from "@fabricant/sdk";
 // 1. Initialize the Precision Guard
 const guard = new Guard({
     maxSlippage: 0.1,
-    riskTolerance: 'moderate',
-    mode: 'block',
+    riskTolerance: "moderate",
+    mode: "block",
 });
 
 // 2. Weave an optimized parallel transaction
@@ -103,14 +103,14 @@ const guard = new Guard({
         cacheTTL: 60000, // Cache for 1 minute
         fallbackOnError: true,
     },
-    mode: 'block',
+    mode: "block",
 });
 
 // Transaction with asset addresses for risk assessment
 const tx = {
-    id: 'tx-001',
-    status: 'pending',
-    assetAddresses: ['TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'],
+    id: "tx-001",
+    status: "pending",
+    assetAddresses: ["TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"],
     instructions: [],
 };
 
@@ -126,20 +126,20 @@ if (result.isValid) {
 ```typescript
 import { Fabricant, Guard, FabricCore } from "@fabricant/sdk";
 
-const guard = new Guard({ riskTolerance: 'moderate' });
+const guard = new Guard({ riskTolerance: "moderate" });
 
 // Optimize transaction with privacy enabled
 const tx = FabricCore.optimize(transaction, {
     enablePrivacy: true,
-    compressionLevel: 'high',
-    privacyProvider: 'arbor',
+    compressionLevel: "high",
+    privacyProvider: "arbor",
 });
 
 // Execute as private transaction with ZK Compression
 const result = await Fabricant.executePrivate(tx, {
     with: guard,
     privacy: {
-        provider: 'arbor',
+        provider: "arbor",
         compression: true,
     },
 });
@@ -178,6 +178,7 @@ Fabricant is an open-source initiative for the Solana builder community.
 -   [sol-ops-guard](https://github.com/psyto/sol-ops-guard) - Security & Compliance
 -   [solfabric](https://github.com/psyto/solfabric) - Parallel Execution Logic
 -   [pulsar](https://github.com/psyto/pulsar) - RWA Risk Oracle & Integrity Gateway
+-   [arbor](https://github.com/psyto/arbor) - Shielded State Middleware & Privacy Layer
 
 ---
 
