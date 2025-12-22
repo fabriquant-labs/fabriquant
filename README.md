@@ -4,7 +4,7 @@
 
 Fabricant is a unified development stack designed to master Solana's Sealevel runtime. We provide the high-performance looms and safety frameworks necessary for AI Agents and DeFi protocols to weave complex transactions with absolute precision.
 
-[Documentation](https://github.com/psyto/fabricant) | [X (Twitter)](https://x.com/psyto)
+[Documentation](https://github.com/psyto/fabricant) | [Guard Docs](./docs/GUARD.md) | [Pulsar Docs](./docs/PULSAR.md) | [Arbor Docs](./docs/ARBOR.md) | [X (Twitter)](https://x.com/psyto)
 
 ---
 
@@ -43,22 +43,36 @@ A high-velocity liquidity engine that finds the smoothest path for asset movemen
 **The Risk Oracle.**
 AI-driven risk assessment gateway providing institutional-grade metrics for RWA and asset integrity validation.
 
--   Real-time risk data via pay-per-call API (x402 protocol)
--   Legal compliance and counterparty risk assessment
--   Oracle integrity validation for autonomous decision-making
+-   **Real-time Risk Assessment:** Risk scores, compliance status, counterparty risk, and oracle integrity
+-   **Intelligent Caching:** Configurable TTL to minimize API calls
+-   **Batch Processing:** Assess multiple assets simultaneously
+-   **Fallback Support:** Graceful degradation when API unavailable
+-   **Guard Integration:** Automatic risk checks in transaction validation flow
+
+### 5. 🌲 Arbor (Privacy Layer)
+
+**The Shielded State Middleware.**
+ZK Compression integration for privacy-enabled and cost-efficient transaction execution.
+
+-   **ZK Compression:** 99.98% cost reduction for token account creation
+-   **Privacy by Default:** Shielded state management using Sparse Binary Merkle Trees
+-   **Cost Estimation:** Built-in tools to calculate compression savings
+-   **Private Execution:** Dedicated API for privacy-enabled transactions
 
 ---
 
 ## 🛠️ Developer Preview: Weaving a Secure Transaction
+
+### Basic Transaction with Guard
 
 ```typescript
 import { Fabricant, Guard, Loom } from "@fabricant/sdk";
 
 // 1. Initialize the Precision Guard
 const guard = new Guard({
-    safetyLevel: "High",
     maxSlippage: 0.1,
-    allowedPrograms: ["Jupiter", "Raydium"],
+    riskTolerance: 'moderate',
+    mode: 'block',
 });
 
 // 2. Weave an optimized parallel transaction
@@ -74,14 +88,77 @@ const tx = await Loom.weave({
 await Fabricant.execute(tx, { with: guard });
 ```
 
+### Transaction with Pulsar Risk Assessment
+
+```typescript
+import { Fabricant, Guard, Pulsar } from "@fabricant/sdk";
+
+// Guard with Pulsar risk assessment enabled
+const guard = new Guard({
+    pulsar: {
+        enabled: true,
+        riskThreshold: 0.7, // Block transactions with risk > 0.7
+        enableComplianceCheck: true,
+        enableCounterpartyCheck: true,
+        cacheTTL: 60000, // Cache for 1 minute
+        fallbackOnError: true,
+    },
+    mode: 'block',
+});
+
+// Transaction with asset addresses for risk assessment
+const tx = {
+    id: 'tx-001',
+    status: 'pending',
+    assetAddresses: ['TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'],
+    instructions: [],
+};
+
+// Pulsar automatically checks risk metrics during validation
+const result = await guard.validateTransaction(tx);
+if (result.isValid) {
+    await Fabricant.execute(tx, { with: guard });
+}
+```
+
+### Private Transaction with Arbor
+
+```typescript
+import { Fabricant, Guard, FabricCore } from "@fabricant/sdk";
+
+const guard = new Guard({ riskTolerance: 'moderate' });
+
+// Optimize transaction with privacy enabled
+const tx = FabricCore.optimize(transaction, {
+    enablePrivacy: true,
+    compressionLevel: 'high',
+    privacyProvider: 'arbor',
+});
+
+// Execute as private transaction with ZK Compression
+const result = await Fabricant.executePrivate(tx, {
+    with: guard,
+    privacy: {
+        provider: 'arbor',
+        compression: true,
+    },
+});
+
+// Estimate cost savings
+const savings = FabricCore.estimateCompressionSavings(1000);
+console.log(`Savings: ${savings.savingsPercent.toFixed(2)}%`);
+```
+
 > **Note:** The SDK is currently in active development. Core functionality is being integrated from standalone repositories.
 
 ---
 
 ## 🗺️ Roadmap: 2025-2026
 
--   **Phase 1: The Loom (SDK Consolidation)** - Merging core modules into `@fabricant/sdk`.
+-   **Phase 1: The Loom (SDK Consolidation)** ✅ - Merging core modules into `@fabricant/sdk`.
+-   **Phase 1.5: Risk & Privacy Integration** ✅ - Pulsar risk oracle and Arbor privacy layer integrated.
 -   **Phase 2: Pattern Library** - Pre-built execution templates for AI Trading Agents and DAO Treasury Management.
+-   **Phase 2.5: Full ZK Stack Integration** - Complete Arbor/Light Protocol integration with proof generation.
 -   **Phase 3: The Fabricant Mainnet** - A decentralized autonomous vault infrastructure leveraging the full stack.
 
 ---

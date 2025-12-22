@@ -11,6 +11,8 @@ Fabric Guard is the quality control layer of the Fabricant SDK, designed to prev
 - **⚡ Emergency Stop** - Immediate halt of all operations when needed
 - **📊 Risk Tolerance Levels** - Configurable strictness (strict/moderate/permissive)
 - **📈 Slippage Protection** - Guards against excessive slippage
+- **🛰️ Pulsar Integration** - Real-time risk assessment for RWA and asset integrity
+- **🌲 Privacy Validation** - Validates privacy requirements for Arbor integration
 - **🔧 Custom Rules** - Add your own validation logic
 - **📝 Warning History** - Track all security warnings
 
@@ -28,8 +30,8 @@ import { Guard } from '@fabricant/sdk';
 // Create a Guard with default configuration
 const guard = new Guard();
 
-// Validate a transaction
-const result = guard.validateTransaction(transaction);
+// Validate a transaction (now async due to Pulsar integration)
+const result = await guard.validateTransaction(transaction);
 
 if (!result.isValid) {
   console.log('Transaction blocked:', result.blockedBy);
@@ -60,6 +62,19 @@ interface GuardConfig {
 
   // Custom validation rules
   customRules?: ValidationRule[];
+
+  // Pulsar risk assessment integration
+  pulsar?: PulsarConfig;
+}
+
+interface PulsarConfig {
+  enabled?: boolean;                    // Enable Pulsar risk checks
+  riskThreshold?: number;               // 0-1 scale, block if exceeded
+  enableComplianceCheck?: boolean;       // Check compliance status
+  enableCounterpartyCheck?: boolean;     // Check counterparty risk
+  enableOracleCheck?: boolean;           // Check oracle integrity
+  cacheTTL?: number;                    // Cache TTL in milliseconds
+  fallbackOnError?: boolean;             // Allow transactions if API fails
 }
 ```
 
@@ -182,22 +197,24 @@ Creates a new Guard instance with optional configuration.
 
 ##### validateTransaction()
 ```typescript
-validateTransaction(transaction: Transaction): ValidationResult
+validateTransaction(transaction: Transaction): Promise<ValidationResult>
 ```
 
-Validates a transaction against all Guard rules.
+Validates a transaction against all Guard rules. **Now async** to support Pulsar risk assessment.
 
-**Returns**: `ValidationResult`
+**Returns**: `Promise<ValidationResult>`
 - `isValid`: boolean - Whether transaction passes validation
 - `warnings`: Array of security warnings detected
 - `blockedBy`: Array of pattern IDs that blocked the transaction
 
+**Note**: If Pulsar is enabled and `transaction.assetAddresses` is provided, Guard will automatically fetch and validate risk metrics.
+
 ##### validate()
 ```typescript
-validate(transaction?: Transaction): boolean
+validate(transaction?: Transaction): Promise<boolean>
 ```
 
-Legacy validation method. Returns `true` if valid, `false` otherwise.
+Legacy validation method. Returns `true` if valid, `false` otherwise. **Now async**.
 
 ##### getConfig()
 ```typescript
@@ -260,7 +277,7 @@ const guard = new Guard({
   riskTolerance: 'moderate',
 });
 
-const result = guard.validateTransaction(tx);
+const result = await guard.validateTransaction(tx);
 
 if (result.isValid) {
   // Safe to proceed
@@ -269,6 +286,45 @@ if (result.isValid) {
   console.error('Transaction blocked:', result.blockedBy);
   result.warnings.forEach(warning => {
     console.log(warning.message);
+  });
+}
+```
+
+### Pulsar Risk Assessment
+
+```typescript
+import { Guard } from '@fabricant/sdk';
+
+const guard = new Guard({
+  pulsar: {
+    enabled: true,
+    riskThreshold: 0.7,              // Block if risk > 0.7
+    enableComplianceCheck: true,       // Check compliance status
+    enableCounterpartyCheck: true,     // Check counterparty risk
+    enableOracleCheck: true,           // Check oracle integrity
+    cacheTTL: 60000,                  // Cache for 1 minute
+    fallbackOnError: true,            // Allow if API fails
+  },
+  mode: 'block',
+  riskTolerance: 'moderate',
+});
+
+// Transaction must include assetAddresses for risk assessment
+const tx = {
+  id: 'tx-001',
+  status: 'pending',
+  assetAddresses: ['TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'],
+  instructions: [],
+};
+
+const result = await guard.validateTransaction(tx);
+
+if (!result.isValid) {
+  // Check if blocked by Pulsar risk assessment
+  result.warnings.forEach(warning => {
+    if (warning.message.includes('risk')) {
+      console.log('High risk asset detected:', warning.affectedAccount);
+    }
   });
 }
 ```
@@ -282,7 +338,7 @@ const guard = new Guard();
 guard.activateEmergencyStop();
 
 // All transactions will be blocked
-const result = guard.validate(); // false
+const result = await guard.validate(); // false
 
 // Resume when safe
 guard.deactivateEmergencyStop();
@@ -322,10 +378,10 @@ if (!guard.isSlippageAcceptable(actualSlippage)) {
 ```typescript
 const guard = new Guard();
 
-// Validate multiple transactions
-guard.validateTransaction(tx1);
-guard.validateTransaction(tx2);
-guard.validateTransaction(tx3);
+// Validate multiple transactions (now async)
+await guard.validateTransaction(tx1);
+await guard.validateTransaction(tx2);
+await guard.validateTransaction(tx3);
 
 // Review all warnings
 const warnings = guard.getWarningHistory();
@@ -336,7 +392,30 @@ warnings.forEach(warning => {
 });
 ```
 
+### Privacy Validation
+
+Guard automatically validates privacy requirements when transactions include privacy metadata:
+
+```typescript
+const guard = new Guard();
+
+const privateTx = {
+  id: 'tx-private',
+  status: 'pending',
+  privacyMetadata: {
+    requiresPrivacy: true,
+    compressionEnabled: true,
+  },
+  instructions: [],
+};
+
+const result = await guard.validateTransaction(privateTx);
+// Guard will warn if privacy is requested but compression is disabled
+```
+
 ## Integration with Fabricant
+
+### Standard Execution
 
 ```typescript
 import { Fabricant, Guard } from '@fabricant/sdk';
@@ -350,14 +429,67 @@ const guard = new Guard({
 await Fabricant.execute(tx, { with: guard });
 ```
 
+### Execution with Pulsar Risk Assessment
+
+```typescript
+import { Fabricant, Guard } from '@fabricant/sdk';
+
+const guard = new Guard({
+  pulsar: {
+    enabled: true,
+    riskThreshold: 0.7,
+    enableComplianceCheck: true,
+  },
+  mode: 'block',
+});
+
+// Transaction with asset addresses
+const tx = {
+  id: 'tx-001',
+  status: 'pending',
+  assetAddresses: ['TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'],
+  instructions: [],
+};
+
+// Fabricant.execute() will check Pulsar risk before execution
+const result = await Fabricant.execute(tx, { with: guard });
+```
+
+### Private Transaction Execution
+
+```typescript
+import { Fabricant, Guard } from '@fabricant/sdk';
+
+const guard = new Guard({ riskTolerance: 'moderate' });
+
+const tx = {
+  id: 'tx-private',
+  status: 'pending',
+  instructions: [],
+};
+
+// Execute as private transaction with Arbor privacy layer
+const result = await Fabricant.executePrivate(tx, {
+  with: guard,
+  privacy: {
+    provider: 'arbor',
+    compression: true,
+  },
+});
+```
+
 ## Best Practices
 
 1. **Always use Guard in production** - Even in permissive mode
 2. **Set appropriate risk tolerance** - Balance security with flexibility
-3. **Monitor warning history** - Review patterns regularly
-4. **Implement emergency procedures** - Have a plan for activateEmergencyStop()
-5. **Test in warn mode first** - Understand warnings before blocking
-6. **Use custom rules for domain logic** - Add business-specific validations
+3. **Enable Pulsar for RWA transactions** - Critical for Real World Assets and institutional use
+4. **Configure Pulsar caching** - Reduce API calls with appropriate TTL
+5. **Monitor warning history** - Review patterns regularly
+6. **Implement emergency procedures** - Have a plan for activateEmergencyStop()
+7. **Test in warn mode first** - Understand warnings before blocking
+8. **Use custom rules for domain logic** - Add business-specific validations
+9. **Handle async validation** - All validation methods are now async due to Pulsar integration
+10. **Set fallback behavior** - Configure `fallbackOnError` for Pulsar API failures
 
 ## TypeScript Types
 
@@ -367,6 +499,8 @@ import type {
   ValidationResult,
   SecurityWarning,
   ValidationRule,
+  PulsarConfig,
+  RiskMetrics,
 } from '@fabricant/sdk';
 
 // Pattern IDs
@@ -380,18 +514,24 @@ import { Severity } from '@fabricant/sdk';
 
 ## Performance
 
-- **Validation Time**: < 1ms for typical transactions
-- **Memory**: ~1KB base + warnings history
+- **Validation Time**: < 1ms for typical transactions (without Pulsar)
+- **Validation Time with Pulsar**: ~50-100ms (includes API call, cached responses are instant)
+- **Memory**: ~1KB base + warnings history + Pulsar cache
 - **Pattern Detection**: O(n) where n = number of instructions
+- **Pulsar Cache**: Configurable TTL, reduces API calls significantly
 
 ## Roadmap
 
+- [x] Pulsar risk assessment integration
+- [x] Privacy validation for Arbor integration
+- [x] Async validation support
 - [ ] Support for Token-2022 program patterns
-- [ ] Integration with on-chain oracle data
+- [ ] Full x402 protocol integration for Pulsar
 - [ ] ML-based anomaly detection
 - [ ] Multi-signature policy enforcement
 - [ ] Time-based transaction limits
 - [ ] WebSocket notifications
+- [ ] Real-time Pulsar risk score updates
 
 ## Contributing
 
