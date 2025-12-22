@@ -24,13 +24,13 @@ Aggregates liquidity across the Solana ecosystem to ensure the fastest, lowest-c
 - Multi-DEX aggregation and smart routing.
 - Autonomous yield-optimization algorithms.
 
-### 3. 🧵 Fabric Core (Core: `solfabric` & `arbor`)
+### 3. 🧵 Fabric Core (Core: `solfabric`)
 **The Performance Layer.**
 A framework optimized for Solana's parallel runtime to maximize throughput and minimize contention.
 - Automatic conflict avoidance for high-frequency transactions.
 - Structured state management to reduce Compute Unit (CU) consumption.
 
-### 4. 🛰️ Pulsar Insight (Core: `datasov2` & `pulsar`)
+### 4. 🛰️ Pulsar Insight (Core: `pulsar`)
 **The Intelligence Layer.**
 Structures on-chain data in milliseconds, providing the "Ground Truth" for agentic decision-making.
 - Real-time event streaming and anomaly detection.
@@ -93,8 +93,8 @@ src/
 ├── core/          # AegisFlow main execution class
 ├── guardian/      # Safety Layer (sol-ops-guard integration)
 ├── flow-engine/   # Liquidity Layer (x-liquidity-engine integration)
-├── fabric/        # Performance Layer (solfabric & arbor integration)
-├── pulsar/        # Intelligence Layer (datasov2 & pulsar integration)
+├── fabric/        # Performance Layer (solfabric integration)
+├── pulsar/        # Intelligence Layer (pulsar integration)
 ├── types/         # TypeScript type definitions
 └── index.ts       # SDK entry point
 ```
@@ -151,7 +151,7 @@ As a solopreneur-led project, we value developer feedback and contributions.
 * [x-liquidity-engine](https://github.com/psyto/x-liquidity-engine) - The Liquidity Backbone
 * [sol-ops-guard](https://github.com/psyto/sol-ops-guard) - Security & Compliance
 * [solfabric](https://github.com/psyto/solfabric) - Parallel Execution Logic
-* [datasov2](https://github.com/psyto/datasov2) - High-Fidelity Data Indexing
+* [pulsar](https://github.com/psyto/pulsar) - High-Fidelity Data Indexing
 
 ---
 
