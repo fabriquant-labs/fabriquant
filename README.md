@@ -30,7 +30,7 @@ A framework optimized for Solana's parallel runtime to maximize throughput and m
 - Automatic conflict avoidance for high-frequency transactions.
 - Structured state management to reduce Compute Unit (CU) consumption.
 
-### 4. 🛰️ Pulsar Insight (Core: `datasov2` & `pulsar_`)
+### 4. 🛰️ Pulsar Insight (Core: `datasov2` & `pulsar`)
 **The Intelligence Layer.**
 Structures on-chain data in milliseconds, providing the "Ground Truth" for agentic decision-making.
 - Real-time event streaming and anomaly detection.
