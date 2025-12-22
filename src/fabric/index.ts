@@ -62,13 +62,13 @@ export class FabricCore {
         // Note: config parameter reserved for future implementation
         void config; // Suppress unused parameter warning
 
-        return {
+        return Promise.resolve({
             ...transaction,
             privacyMetadata: {
                 requiresPrivacy: true,
                 compressionEnabled: true,
             },
-        };
+        });
     }
 
     /**

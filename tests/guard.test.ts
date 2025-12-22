@@ -41,7 +41,7 @@ describe('Guard (Fabric Guard)', () => {
   });
 
   describe('Emergency Stop', () => {
-    it('should block all transactions when emergency stop is active', () => {
+    it('should block all transactions when emergency stop is active', async () => {
       guard.activateEmergencyStop();
 
       const tx: Transaction = {
@@ -49,13 +49,13 @@ describe('Guard (Fabric Guard)', () => {
         status: 'pending',
       };
 
-      const result = guard.validateTransaction(tx);
+      const result = await guard.validateTransaction(tx);
       expect(result.isValid).toBe(false);
       expect(result.warnings.length).toBeGreaterThan(0);
       expect(result.warnings[0].message).toContain('EMERGENCY STOP');
     });
 
-    it('should allow transactions when emergency stop is deactivated', () => {
+    it('should allow transactions when emergency stop is deactivated', async () => {
       guard.activateEmergencyStop();
       guard.deactivateEmergencyStop();
 
@@ -64,13 +64,13 @@ describe('Guard (Fabric Guard)', () => {
         status: 'pending',
       };
 
-      const result = guard.validateTransaction(tx);
+      const result = await guard.validateTransaction(tx);
       expect(result.isValid).toBe(true);
     });
 
-    it('should return false from legacy validate when emergency stop is active', () => {
+    it('should return false from legacy validate when emergency stop is active', async () => {
       guard.activateEmergencyStop();
-      expect(guard.validate()).toBe(false);
+      expect(await guard.validate()).toBe(false);
     });
   });
 
@@ -92,18 +92,18 @@ describe('Guard (Fabric Guard)', () => {
   });
 
   describe('Transaction Validation', () => {
-    it('should validate empty transaction', () => {
+    it('should validate empty transaction', async () => {
       const tx: Transaction = {
         id: 'test-tx',
         status: 'pending',
       };
 
-      const result = guard.validateTransaction(tx);
+      const result = await guard.validateTransaction(tx);
       expect(result.isValid).toBe(true);
       expect(result.warnings).toHaveLength(0);
     });
 
-    it('should validate transaction with no dangerous patterns', () => {
+    it('should validate transaction with no dangerous patterns', async () => {
       const tx: Transaction = {
         id: 'test-tx',
         status: 'pending',
@@ -116,11 +116,11 @@ describe('Guard (Fabric Guard)', () => {
         ],
       };
 
-      const result = guard.validateTransaction(tx);
+      const result = await guard.validateTransaction(tx);
       expect(result.isValid).toBe(true);
     });
 
-    it('should work in warn mode', () => {
+    it('should work in warn mode', async () => {
       const warnGuard = new Guard({ mode: 'warn' });
 
       // Even with dangerous patterns, warn mode should not block
@@ -130,7 +130,7 @@ describe('Guard (Fabric Guard)', () => {
         instructions: [],
       };
 
-      const result = warnGuard.validateTransaction(tx);
+      const result = await warnGuard.validateTransaction(tx);
       expect(result.isValid).toBe(true);
     });
   });
@@ -156,17 +156,17 @@ describe('Guard (Fabric Guard)', () => {
   });
 
   describe('Legacy Compatibility', () => {
-    it('should support legacy validate() without transaction', () => {
-      expect(guard.validate()).toBe(true);
+    it('should support legacy validate() without transaction', async () => {
+      expect(await guard.validate()).toBe(true);
     });
 
-    it('should support legacy validate() with transaction', () => {
+    it('should support legacy validate() with transaction', async () => {
       const tx: Transaction = {
         id: 'test-tx',
         status: 'pending',
       };
 
-      expect(guard.validate(tx)).toBe(true);
+      expect(await guard.validate(tx)).toBe(true);
     });
   });
 
