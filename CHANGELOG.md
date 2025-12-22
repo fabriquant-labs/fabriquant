@@ -151,8 +151,8 @@ For users upgrading from pre-0.1.0 versions, see [MIGRATION.md](./MIGRATION.md) 
 
 ### Links
 
-- [Repository](https://github.com/psyto/fabriquant)
-- [Issues](https://github.com/psyto/fabriquant/issues)
+- [Repository](https://github.com/fabriquant-labs/fabriquant)
+- [Issues](https://github.com/fabriquant-labs/fabriquant/issues)
 - [Documentation](./docs/)
 
 ### Contributors
@@ -177,4 +177,4 @@ Future releases will be documented here.
 
 ---
 
-[0.1.0]: https://github.com/psyto/fabriquant/releases/tag/v0.1.0
+[0.1.0]: https://github.com/fabriquant-labs/fabriquant/releases/tag/v0.1.0

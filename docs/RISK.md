@@ -307,6 +307,6 @@ Get cache statistics.
 
 ## Support
 
--   GitHub Issues: https://github.com/psyto/fabriquant/issues
--   Documentation: https://github.com/psyto/fabriquant
+-   GitHub Issues: https://github.com/fabriquant-labs/fabriquant/issues
+-   Documentation: https://github.com/fabriquant-labs/fabriquant
 -   Twitter: https://x.com/psyto

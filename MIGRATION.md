@@ -380,7 +380,7 @@ If you encounter issues during migration:
 
 1. **Check the examples**: See `examples/` directory for updated code samples
 2. **Review documentation**: See `docs/` for detailed component documentation
-3. **Open an issue**: [GitHub Issues](https://github.com/psyto/fabriquant/issues)
+3. **Open an issue**: [GitHub Issues](https://github.com/fabriquant-labs/fabriquant/issues)
 4. **Check the changelog**: See [CHANGELOG.md](./CHANGELOG.md) for complete list of changes
 
 ## Future Deprecations

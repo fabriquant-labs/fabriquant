@@ -4,7 +4,7 @@
 
 Fabriquant is a unified development stack designed to master Solana's Sealevel runtime. We provide the high-performance looms and safety frameworks necessary for AI Agents and DeFi protocols to weave complex transactions with absolute precision.
 
-[Documentation](https://github.com/psyto/fabriquant) | [Guard Docs](./docs/GUARD.md) | [Risk Docs](./docs/RISK.md) | [Privacy Docs](./docs/PRIVACY.md) | [X (Twitter)](https://x.com/psyto)
+[Documentation](https://github.com/fabriquant-labs/fabriquant) | [Guard Docs](./docs/GUARD.md) | [Risk Docs](./docs/RISK.md) | [Privacy Docs](./docs/PRIVACY.md) | [X (Twitter)](https://x.com/psyto)
 
 ---
 
