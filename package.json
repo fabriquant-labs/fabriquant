@@ -1,0 +1,61 @@
+{
+  "name": "@aegis-flow/sdk",
+  "version": "0.1.0",
+  "description": "The Autonomous Execution Stack for Solana - Secure, Parallel, Optimized infrastructure for AI Agents and Autonomous Protocols",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "solana",
+    "ai-agents",
+    "defi",
+    "blockchain",
+    "autonomous",
+    "security",
+    "liquidity",
+    "parallel-execution"
+  ],
+  "author": "Psyto",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psyto/aegisflow"
+  },
+  "bugs": {
+    "url": "https://github.com/psyto/aegisflow/issues"
+  },
+  "homepage": "https://aegis-flow.io",
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "eslint": "^8.56.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
