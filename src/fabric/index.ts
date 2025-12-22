@@ -27,7 +27,7 @@ export class FabricCore {
     // 2. Reorder instructions for maximum parallelism
     // 3. Bundle transactions efficiently
 
-    // If privacy is enabled, prepare for Arbor compression
+    // If privacy is enabled, prepare for Fabric Weave compression
     if (options.enablePrivacy) {
       return {
         ...transaction,
@@ -42,7 +42,7 @@ export class FabricCore {
   }
 
   /**
-   * Compress transaction state using Arbor ZK Compression
+   * Compress transaction state using Fabric Weave ZK Compression
    * @param transaction - Transaction to compress
    * @param config - Privacy configuration (compressionLevel, provider, etc.)
    */
@@ -50,7 +50,7 @@ export class FabricCore {
     transaction: Transaction,
     config: PrivacyConfig = {}
   ): Promise<Transaction> {
-    // TODO: Integrate with Arbor Shielded State Middleware
+    // TODO: Integrate with Fabric Weave Shielded State Middleware
     // This would:
     // 1. Convert public state to compressed private state
     // 2. Use Sparse Binary Merkle Trees for compression
@@ -82,7 +82,7 @@ export class FabricCore {
     savings: number;
     savingsPercent: number;
   } {
-    // Based on Arbor documentation:
+    // Based on Fabric Weave documentation:
     // Creating 100 Token Accounts: 0.20 SOL → 0.00004 SOL (99.98% reduction)
     const nativeCostPerAccount = 0.002; // 0.20 SOL / 100 accounts
     const compressedCostPerAccount = 0.0000004; // 0.00004 SOL / 100 accounts

@@ -5,12 +5,12 @@
 export interface FabricantConfig {
   network?: 'mainnet-beta' | 'devnet' | 'testnet';
   rpcUrl?: string;
-  // Privacy configuration for Arbor integration
+  // Privacy configuration for Fabric Weave integration
   privacy?: PrivacyConfig;
 }
 
 /**
- * Privacy Configuration (Arbor Integration)
+ * Privacy Configuration (Fabric Weave Integration)
  */
 export interface PrivacyConfig {
   enabled?: boolean;
@@ -20,7 +20,7 @@ export interface PrivacyConfig {
 }
 
 /**
- * Pulsar Risk Metrics
+ * Fabric Pulse Risk Metrics
  */
 export interface RiskMetrics {
   asset?: string;
@@ -32,7 +32,7 @@ export interface RiskMetrics {
 }
 
 /**
- * Pulsar Configuration
+ * Fabric Pulse Configuration
  */
 export interface PulsarConfig {
   enabled?: boolean;
@@ -41,7 +41,7 @@ export interface PulsarConfig {
   enableCounterpartyCheck?: boolean;
   enableOracleCheck?: boolean;
   cacheTTL?: number; // Cache time-to-live in milliseconds (default: 60000 = 1 minute)
-  fallbackOnError?: boolean; // Allow transactions if Pulsar API fails
+  fallbackOnError?: boolean; // Allow transactions if Fabric Pulse API fails
 }
 
 /**
@@ -66,7 +66,7 @@ export interface GuardConfig {
   // Custom validation rules
   customRules?: ValidationRule[];
 
-  // Pulsar integration for risk assessment
+  // Fabric Pulse integration for risk assessment
   pulsar?: PulsarConfig;
 }
 

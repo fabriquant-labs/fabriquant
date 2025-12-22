@@ -18,7 +18,7 @@ export class Fabricant {
   }
 
   /**
-   * Execute a transaction with Guard protection and optional Pulsar risk assessment
+   * Execute a transaction with Guard protection and optional Fabric Pulse risk assessment
    */
   public static async execute(
     tx: Transaction,
@@ -31,7 +31,7 @@ export class Fabricant {
         return { ...tx, status: 'failed' };
       }
 
-      // Additional validation: Check Pulsar risk if Guard has Pulsar config
+      // Additional validation: Check Fabric Pulse risk if Guard has Pulsar config
       const guardConfig = options.with.getConfig();
       if (guardConfig.pulsar?.enabled && tx.assetAddresses) {
         try {
@@ -69,7 +69,7 @@ export class Fabricant {
             }
           }
         } catch (error) {
-          // If Pulsar fails and fallback is enabled, continue execution
+          // If Fabric Pulse fails and fallback is enabled, continue execution
           if (!guardConfig.pulsar.fallbackOnError) {
             return { ...tx, status: 'failed' };
           }
@@ -83,7 +83,7 @@ export class Fabricant {
   }
 
   /**
-   * Execute a private transaction with Arbor privacy layer
+   * Execute a private transaction with Fabric Weave privacy layer
    */
   public static async executePrivate(
     tx: Transaction,
@@ -106,7 +106,7 @@ export class Fabricant {
       }
     }
 
-    // TODO: Integrate with Arbor/Light Protocol ZK Stack
+    // TODO: Integrate with Fabric Weave/Light Protocol ZK Stack
     // This would:
     // 1. Compress transaction state using Sparse Binary Merkle Trees
     // 2. Generate ZK proof

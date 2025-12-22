@@ -1,16 +1,16 @@
-# Pulsar - Risk Oracle Documentation
+# Fabric Pulse - The Quality Gauge Documentation
 
 ## Overview
 
-Pulsar is the Risk Oracle component of Fabricant, providing AI-driven risk assessment for Real World Assets (RWA) and asset integrity validation. It integrates seamlessly with Guard to provide institutional-grade risk metrics before transaction execution.
+Fabric Pulse (formerly Pulsar) is the Risk Oracle component of Fabricant, providing AI-driven risk assessment for Real World Assets (RWA) and asset integrity validation. It integrates seamlessly with Fabric Guard to provide institutional-grade risk metrics before transaction execution.
 
 ## Features
 
-- **🛰️ Real-time Risk Assessment** - Risk scores, compliance status, counterparty risk, and oracle integrity
-- **💾 Intelligent Caching** - Configurable TTL to minimize API calls and reduce latency
+- **🧭 Real-time Risk Assessment** - Continuous monitoring of risk scores, compliance status, and oracle integrity
+- **💾 Intelligent Caching** - Configurable TTL to maximize performance and minimize API overhead
 - **📦 Batch Processing** - Assess multiple assets simultaneously
 - **🔄 Fallback Support** - Graceful degradation when API unavailable
-- **🔗 Guard Integration** - Automatic risk checks in transaction validation flow
+- **🔗 Guard Integration** - Seamlessly feeds data into Fabric Guard for automated transaction blocking
 
 ## Installation
 
@@ -25,6 +25,7 @@ npm install @fabricant/sdk
 ```typescript
 import { Pulsar } from '@fabricant/sdk';
 
+// Note: The class is still named 'Pulsar' in code, but represents Fabric Pulse
 // Get risk metrics for a single asset
 const metrics = await Pulsar.getRiskMetrics('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
 
@@ -37,7 +38,7 @@ console.log('Oracle Integrity:', metrics.oracleIntegrity);
 ### Batch Risk Assessment
 
 ```typescript
-import { Pulsar } from '@fabricant/sdk';
+import { Pulsar } from '@fabricant/sdk'; // Fabric Pulse
 
 const assetAddresses = [
   'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',
@@ -59,7 +60,7 @@ for (const [address, metrics] of riskMap.entries()) {
 
 ```typescript
 interface PulsarConfig {
-  enabled?: boolean;                    // Enable Pulsar risk checks (default: true)
+  enabled?: boolean;                    // Enable Fabric Pulse risk checks (default: true)
   riskThreshold?: number;               // 0-1 scale, block if exceeded (default: 0.7)
   enableComplianceCheck?: boolean;       // Check compliance status (default: true)
   enableCounterpartyCheck?: boolean;     // Check counterparty risk (default: true)
@@ -93,7 +94,7 @@ interface RiskMetrics {
 
 ## Caching
 
-Pulsar uses an in-memory cache to reduce API calls and improve performance.
+Fabric Pulse uses an in-memory cache to reduce API calls and improve performance.
 
 ### Cache Management
 
@@ -118,9 +119,9 @@ const metrics = await Pulsar.getRiskMetrics(assetAddress, {
 });
 ```
 
-## Integration with Guard
+## Integration with Fabric Guard
 
-Pulsar integrates automatically with Guard when enabled in the configuration:
+Fabric Pulse integrates automatically with Fabric Guard when enabled in the configuration:
 
 ```typescript
 import { Guard } from '@fabricant/sdk';
@@ -146,14 +147,14 @@ const tx = {
   instructions: [],
 };
 
-// Guard will automatically check Pulsar risk metrics
+// Fabric Guard will automatically check Fabric Pulse risk metrics
 const result = await guard.validateTransaction(tx);
 
 if (!result.isValid) {
-  // Check for Pulsar-related warnings
+  // Check for Fabric Pulse-related warnings
   result.warnings.forEach(warning => {
     if (warning.message.includes('risk') || warning.message.includes('compliance')) {
-      console.log('Pulsar warning:', warning.message);
+      console.log('Fabric Pulse warning:', warning.message);
     }
   });
 }
@@ -161,7 +162,7 @@ if (!result.isValid) {
 
 ## Error Handling
 
-Pulsar supports graceful fallback when the API is unavailable:
+Fabric Pulse supports graceful fallback when the API is unavailable:
 
 ```typescript
 const guard = new Guard({
@@ -171,7 +172,7 @@ const guard = new Guard({
   },
 });
 
-// If Pulsar API fails, transaction will proceed (if fallbackOnError: true)
+// If Fabric Pulse API fails, transaction will proceed (if fallbackOnError: true)
 // If fallbackOnError: false, transaction will be blocked
 ```
 
@@ -181,7 +182,7 @@ const guard = new Guard({
 
 ```typescript
 const guard = new Guard({
-  pulsar: {
+  pulsar: { // Fabric Pulse configuration
     enabled: true,
     enableComplianceCheck: true,
     riskThreshold: 0.5, // Stricter for RWA
@@ -195,7 +196,7 @@ const guard = new Guard({
 ```typescript
 // Use aggressive caching for high-frequency operations
 const guard = new Guard({
-  pulsar: {
+  pulsar: { // Fabric Pulse configuration
     enabled: true,
     cacheTTL: 10000, // 10 seconds for faster updates
   },
@@ -207,7 +208,7 @@ const guard = new Guard({
 ```typescript
 // Comprehensive risk assessment for institutional use
 const guard = new Guard({
-  pulsar: {
+  pulsar: { // Fabric Pulse configuration
     enabled: true,
     riskThreshold: 0.6,
     enableComplianceCheck: true,
@@ -220,7 +221,9 @@ const guard = new Guard({
 
 ## API Reference
 
-### Pulsar Class
+### Pulsar Class (Fabric Pulse)
+
+**Note:** The class is exported as `Pulsar` for backward compatibility, but represents Fabric Pulse functionality.
 
 #### getRiskMetrics()
 
@@ -288,6 +291,7 @@ Get cache statistics.
 - [ ] Historical risk trend analysis
 - [ ] Custom risk scoring models
 - [ ] Multi-chain support
+- [ ] Integration with Fabric Weave for privacy-aware risk assessment
 
 ## Support
 

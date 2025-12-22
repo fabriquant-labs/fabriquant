@@ -4,7 +4,7 @@
 
 Fabricant is a unified development stack designed to master Solana's Sealevel runtime. We provide the high-performance looms and safety frameworks necessary for AI Agents and DeFi protocols to weave complex transactions with absolute precision.
 
-[Documentation](https://github.com/psyto/fabricant) | [Guard Docs](./docs/GUARD.md) | [Pulsar Docs](./docs/PULSAR.md) | [Arbor Docs](./docs/ARBOR.md) | [X (Twitter)](https://x.com/psyto)
+[Documentation](https://github.com/psyto/fabricant) | [Guard Docs](./docs/GUARD.md) | [Fabric Pulse Docs](./docs/PULSAR.md) | [Fabric Weave Docs](./docs/ARBOR.md) | [X (Twitter)](https://x.com/psyto)
 
 ---
 
@@ -85,14 +85,15 @@ const tx = await Loom.weave({
 await Fabricant.execute(tx, { with: guard });
 ```
 
-### Transaction with Pulsar Risk Assessment
+### Transaction with Fabric Pulse Risk Assessment
 
 ```typescript
 import { Fabricant, Guard, Pulsar } from "@fabricant/sdk";
 
-// Guard with Pulsar risk assessment enabled
+// Guard with Fabric Pulse risk assessment enabled
 const guard = new Guard({
     pulsar: {
+        // Fabric Pulse configuration
         enabled: true,
         riskThreshold: 0.7, // Block transactions with risk > 0.7
         enableComplianceCheck: true,
@@ -111,32 +112,32 @@ const tx = {
     instructions: [],
 };
 
-// Pulsar automatically checks risk metrics during validation
+// Fabric Pulse automatically checks risk metrics during validation
 const result = await guard.validateTransaction(tx);
 if (result.isValid) {
     await Fabricant.execute(tx, { with: guard });
 }
 ```
 
-### Private Transaction with Arbor
+### Private Transaction with Fabric Weave
 
 ```typescript
 import { Fabricant, Guard, FabricCore } from "@fabricant/sdk";
 
 const guard = new Guard({ riskTolerance: "moderate" });
 
-// Optimize transaction with privacy enabled
+// Optimize transaction with privacy enabled via Fabric Weave
 const tx = FabricCore.optimize(transaction, {
     enablePrivacy: true,
     compressionLevel: "high",
-    privacyProvider: "arbor",
+    privacyProvider: "arbor", // Fabric Weave
 });
 
 // Execute as private transaction with ZK Compression
 const result = await Fabricant.executePrivate(tx, {
     with: guard,
     privacy: {
-        provider: "arbor",
+        provider: "arbor", // Fabric Weave
         compression: true,
     },
 });
@@ -153,9 +154,9 @@ console.log(`Savings: ${savings.savingsPercent.toFixed(2)}%`);
 ## 🗺️ Roadmap: 2025-2026
 
 -   **Phase 1: The Loom (SDK Consolidation)** ✅ - Merging core modules into `@fabricant/sdk`.
--   **Phase 1.5: Risk & Privacy Integration** ✅ - Pulsar risk oracle and Arbor privacy layer integrated.
+-   **Phase 1.5: Risk & Privacy Integration** ✅ - Fabric Pulse risk oracle and Fabric Weave privacy layer integrated.
 -   **Phase 2: Pattern Library** - Pre-built execution templates for AI Trading Agents and DAO Treasury Management.
--   **Phase 2.5: Full ZK Stack Integration** - Complete Arbor/Light Protocol integration with proof generation.
+-   **Phase 2.5: Full ZK Stack Integration** - Complete Fabric Weave/Light Protocol integration with proof generation.
 -   **Phase 3: The Fabricant Mainnet** - A decentralized autonomous vault infrastructure leveraging the full stack.
 
 ---

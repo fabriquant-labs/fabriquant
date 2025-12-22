@@ -11,8 +11,8 @@ Fabric Guard is the quality control layer of the Fabricant SDK, designed to prev
 - **⚡ Emergency Stop** - Immediate halt of all operations when needed
 - **📊 Risk Tolerance Levels** - Configurable strictness (strict/moderate/permissive)
 - **📈 Slippage Protection** - Guards against excessive slippage
-- **🛰️ Pulsar Integration** - Real-time risk assessment for RWA and asset integrity
-- **🌲 Privacy Validation** - Validates privacy requirements for Arbor integration
+- **🧭 Fabric Pulse Integration** - Real-time risk assessment for RWA and asset integrity
+- **🌿 Privacy Validation** - Validates privacy requirements for Fabric Weave integration
 - **🔧 Custom Rules** - Add your own validation logic
 - **📝 Warning History** - Track all security warnings
 
@@ -30,7 +30,7 @@ import { Guard } from '@fabricant/sdk';
 // Create a Guard with default configuration
 const guard = new Guard();
 
-// Validate a transaction (now async due to Pulsar integration)
+// Validate a transaction (now async due to Fabric Pulse integration)
 const result = await guard.validateTransaction(transaction);
 
 if (!result.isValid) {
@@ -63,12 +63,12 @@ interface GuardConfig {
   // Custom validation rules
   customRules?: ValidationRule[];
 
-  // Pulsar risk assessment integration
+  // Fabric Pulse risk assessment integration
   pulsar?: PulsarConfig;
 }
 
 interface PulsarConfig {
-  enabled?: boolean;                    // Enable Pulsar risk checks
+  enabled?: boolean;                    // Enable Fabric Pulse risk checks
   riskThreshold?: number;               // 0-1 scale, block if exceeded
   enableComplianceCheck?: boolean;       // Check compliance status
   enableCounterpartyCheck?: boolean;     // Check counterparty risk
@@ -200,14 +200,14 @@ Creates a new Guard instance with optional configuration.
 validateTransaction(transaction: Transaction): Promise<ValidationResult>
 ```
 
-Validates a transaction against all Guard rules. **Now async** to support Pulsar risk assessment.
+Validates a transaction against all Guard rules. **Now async** to support Fabric Pulse risk assessment.
 
 **Returns**: `Promise<ValidationResult>`
 - `isValid`: boolean - Whether transaction passes validation
 - `warnings`: Array of security warnings detected
 - `blockedBy`: Array of pattern IDs that blocked the transaction
 
-**Note**: If Pulsar is enabled and `transaction.assetAddresses` is provided, Guard will automatically fetch and validate risk metrics.
+**Note**: If Fabric Pulse is enabled and `transaction.assetAddresses` is provided, Guard will automatically fetch and validate risk metrics.
 
 ##### validate()
 ```typescript
@@ -290,13 +290,13 @@ if (result.isValid) {
 }
 ```
 
-### Pulsar Risk Assessment
+### Fabric Pulse Risk Assessment
 
 ```typescript
 import { Guard } from '@fabricant/sdk';
 
 const guard = new Guard({
-  pulsar: {
+  pulsar: { // Fabric Pulse configuration
     enabled: true,
     riskThreshold: 0.7,              // Block if risk > 0.7
     enableComplianceCheck: true,       // Check compliance status
@@ -320,7 +320,7 @@ const tx = {
 const result = await guard.validateTransaction(tx);
 
 if (!result.isValid) {
-  // Check if blocked by Pulsar risk assessment
+  // Check if blocked by Fabric Pulse risk assessment
   result.warnings.forEach(warning => {
     if (warning.message.includes('risk')) {
       console.log('High risk asset detected:', warning.affectedAccount);
@@ -429,13 +429,13 @@ const guard = new Guard({
 await Fabricant.execute(tx, { with: guard });
 ```
 
-### Execution with Pulsar Risk Assessment
+### Execution with Fabric Pulse Risk Assessment
 
 ```typescript
 import { Fabricant, Guard } from '@fabricant/sdk';
 
 const guard = new Guard({
-  pulsar: {
+  pulsar: { // Fabric Pulse configuration
     enabled: true,
     riskThreshold: 0.7,
     enableComplianceCheck: true,
@@ -451,7 +451,7 @@ const tx = {
   instructions: [],
 };
 
-// Fabricant.execute() will check Pulsar risk before execution
+// Fabricant.execute() will check Fabric Pulse risk before execution
 const result = await Fabricant.execute(tx, { with: guard });
 ```
 
@@ -468,11 +468,11 @@ const tx = {
   instructions: [],
 };
 
-// Execute as private transaction with Arbor privacy layer
+// Execute as private transaction with Fabric Weave privacy layer
 const result = await Fabricant.executePrivate(tx, {
   with: guard,
   privacy: {
-    provider: 'arbor',
+    provider: 'arbor', // Fabric Weave
     compression: true,
   },
 });
@@ -482,14 +482,15 @@ const result = await Fabricant.executePrivate(tx, {
 
 1. **Always use Guard in production** - Even in permissive mode
 2. **Set appropriate risk tolerance** - Balance security with flexibility
-3. **Enable Pulsar for RWA transactions** - Critical for Real World Assets and institutional use
-4. **Configure Pulsar caching** - Reduce API calls with appropriate TTL
+3. **Enable Fabric Pulse for RWA transactions** - Critical for Real World Assets and institutional use
+4. **Configure Fabric Pulse caching** - Reduce API calls with appropriate TTL
 5. **Monitor warning history** - Review patterns regularly
 6. **Implement emergency procedures** - Have a plan for activateEmergencyStop()
 7. **Test in warn mode first** - Understand warnings before blocking
 8. **Use custom rules for domain logic** - Add business-specific validations
-9. **Handle async validation** - All validation methods are now async due to Pulsar integration
-10. **Set fallback behavior** - Configure `fallbackOnError` for Pulsar API failures
+9. **Handle async validation** - All validation methods are now async due to Fabric Pulse integration
+10. **Set fallback behavior** - Configure `fallbackOnError` for Fabric Pulse API failures
+11. **Combine with Fabric Weave** - Use privacy layer for confidential transactions
 
 ## TypeScript Types
 
@@ -514,24 +515,24 @@ import { Severity } from '@fabricant/sdk';
 
 ## Performance
 
-- **Validation Time**: < 1ms for typical transactions (without Pulsar)
-- **Validation Time with Pulsar**: ~50-100ms (includes API call, cached responses are instant)
-- **Memory**: ~1KB base + warnings history + Pulsar cache
+- **Validation Time**: < 1ms for typical transactions (without Fabric Pulse)
+- **Validation Time with Fabric Pulse**: ~50-100ms (includes API call, cached responses are instant)
+- **Memory**: ~1KB base + warnings history + Fabric Pulse cache
 - **Pattern Detection**: O(n) where n = number of instructions
-- **Pulsar Cache**: Configurable TTL, reduces API calls significantly
+- **Fabric Pulse Cache**: Configurable TTL, reduces API calls significantly
 
 ## Roadmap
 
-- [x] Pulsar risk assessment integration
-- [x] Privacy validation for Arbor integration
+- [x] Fabric Pulse risk assessment integration
+- [x] Privacy validation for Fabric Weave integration
 - [x] Async validation support
 - [ ] Support for Token-2022 program patterns
-- [ ] Full x402 protocol integration for Pulsar
+- [ ] Full x402 protocol integration for Fabric Pulse
 - [ ] ML-based anomaly detection
 - [ ] Multi-signature policy enforcement
 - [ ] Time-based transaction limits
 - [ ] WebSocket notifications
-- [ ] Real-time Pulsar risk score updates
+- [ ] Real-time Fabric Pulse risk score updates
 
 ## Contributing
 

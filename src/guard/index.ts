@@ -40,7 +40,7 @@ export class Guard {
 
   /**
    * Legacy validate method for backward compatibility
-   * Note: This is now async due to Pulsar integration
+   * Note: This is now async due to Fabric Pulse integration
    */
   public async validate(transaction?: Transaction): Promise<boolean> {
     if (!transaction) {

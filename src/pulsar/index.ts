@@ -1,7 +1,9 @@
 /**
- * Pulsar - The Risk Oracle
+ * Fabric Pulse (Pulsar) - The Quality Gauge
  * AI-driven risk assessment gateway for RWA and asset integrity validation.
  * Provides institutional-grade risk metrics via pay-per-call API (x402 protocol).
+ * 
+ * Note: Class is exported as 'Pulsar' for backward compatibility.
  */
 
 import type { RiskMetrics, PulsarConfig } from '../types';
@@ -12,7 +14,8 @@ interface CacheEntry {
 }
 
 /**
- * Pulsar risk assessment service with caching and fallback support
+ * Fabric Pulse risk assessment service with caching and fallback support
+ * Exported as 'Pulsar' for backward compatibility
  */
 export class Pulsar {
   private static cache: Map<string, CacheEntry> = new Map();
@@ -52,7 +55,7 @@ export class Pulsar {
     }
 
     try {
-      // Attempt to fetch from Pulsar RWA Risk Gateway
+      // Attempt to fetch from Fabric Pulse RWA Risk Gateway
       // TODO: Replace with actual x402 protocol integration
       const metrics = await this.fetchRiskMetrics(assetAddress, mergedConfig);
 
@@ -116,8 +119,8 @@ export class Pulsar {
   }
 
   /**
-   * Fetch risk metrics from Pulsar API (placeholder implementation)
-   * TODO: Integrate with actual Pulsar RWA Risk Gateway using x402 protocol
+   * Fetch risk metrics from Fabric Pulse API (placeholder implementation)
+   * TODO: Integrate with actual Fabric Pulse RWA Risk Gateway using x402 protocol
    */
   private static async fetchRiskMetrics(
     assetAddress?: string,
@@ -160,7 +163,7 @@ export class Pulsar {
   }
 
   /**
-   * Get default metrics when Pulsar is disabled or unavailable
+   * Get default metrics when Fabric Pulse is disabled or unavailable
    */
   private static getDefaultMetrics(assetAddress?: string): RiskMetrics {
     return {

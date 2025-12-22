@@ -1,15 +1,15 @@
-# Arbor - Privacy Layer Documentation
+# Fabric Weave - The Hidden Stitch Documentation
 
 ## Overview
 
-Arbor is the Shielded State Middleware (SSM) integration for Fabricant, providing ZK Compression and privacy-enabled transaction execution. It acts as an abstraction layer between the Solana Virtual Machine (SVM) and the Light Protocol ZK Stack, enabling cost-efficient private transactions.
+Fabric Weave (formerly Arbor) is the Shielded State Middleware (SSM) integration for Fabricant, providing ZK Compression and privacy-enabled transaction execution. It acts as an abstraction layer between the Solana Virtual Machine (SVM) and the Light Protocol ZK Stack, enabling cost-efficient private transactions.
 
 ## Features
 
-- **🌲 ZK Compression** - 99.98% cost reduction for token account creation
-- **🔒 Privacy by Default** - Shielded state management using Sparse Binary Merkle Trees
+- **🌿 ZK Compression** - Massive cost reduction for state storage and account creation via Sparse Binary Merkle Trees
+- **🔒 Privacy by Default** - Shielded state management to ensure transaction confidentiality
 - **💰 Cost Estimation** - Built-in tools to calculate compression savings
-- **⚡ Private Execution** - Dedicated API for privacy-enabled transactions
+- **⚡ Efficient Execution** - Dedicated API designed for privacy-enabled operations without sacrificing speed
 - **🔗 Guard Integration** - Privacy validation in transaction flow
 
 ## Cost Savings
@@ -43,11 +43,11 @@ const tx = {
   instructions: [],
 };
 
-// Execute as private transaction with ZK Compression
+// Execute as private transaction with ZK Compression via Fabric Weave
 const result = await Fabricant.executePrivate(tx, {
   with: guard,
   privacy: {
-    provider: 'arbor',
+    provider: 'arbor', // Note: 'arbor' is the provider identifier, represents Fabric Weave
     compression: true,
   },
 });
@@ -82,11 +82,11 @@ const tx = {
   instructions: [],
 };
 
-// Optimize with privacy enabled
+// Optimize with privacy enabled via Fabric Weave
 const optimized = FabricCore.optimize(tx, {
   enablePrivacy: true,
   compressionLevel: 'high',
-  privacyProvider: 'arbor',
+  privacyProvider: 'arbor', // Note: 'arbor' is the provider identifier, represents Fabric Weave
 });
 
 // Execute as private transaction
@@ -105,7 +105,7 @@ const result = await Fabricant.executePrivate(optimized, {
 ```typescript
 interface PrivacyConfig {
   enabled?: boolean;                    // Enable privacy features
-  provider?: 'arbor' | 'light';         // Privacy provider
+  provider?: 'arbor' | 'light';         // Privacy provider ('arbor' = Fabric Weave)
   compressionLevel?: 'low' | 'medium' | 'high';  // Compression level
   requirePrivacy?: boolean;              // Require privacy for execution
 }
@@ -120,7 +120,7 @@ const fabricant = new Fabricant({
   network: 'mainnet-beta',
   privacy: {
     enabled: true,
-    provider: 'arbor',
+    provider: 'arbor', // Fabric Weave
     compressionLevel: 'high',
   },
 });
@@ -180,7 +180,7 @@ static async compressWithArbor(
 ): Promise<Transaction>
 ```
 
-Compress transaction state using Arbor ZK Compression.
+Compress transaction state using Fabric Weave ZK Compression.
 
 **Note:** This is a placeholder for future implementation. Full integration with Light Protocol ZK Stack will be added in Phase 2.5.
 
@@ -210,9 +210,9 @@ Estimate cost savings from ZK Compression.
 
 **Returns:** Cost comparison object
 
-## Integration with Guard
+## Integration with Fabric Guard
 
-Guard automatically validates privacy requirements:
+Fabric Guard automatically validates privacy requirements:
 
 ```typescript
 import { Guard } from '@fabricant/sdk';
@@ -229,10 +229,10 @@ const privateTx = {
   instructions: [],
 };
 
-// Guard will validate privacy requirements
+// Fabric Guard will validate privacy requirements
 const result = await guard.validateTransaction(privateTx);
 
-// Guard warns if privacy is requested but compression is disabled
+// Fabric Guard warns if privacy is requested but compression is disabled
 if (!result.isValid) {
   result.warnings.forEach(warning => {
     if (warning.message.includes('privacy')) {
@@ -247,10 +247,10 @@ if (!result.isValid) {
 ### 1. Confidential Payroll & B2B Payments
 
 ```typescript
-// Hide transaction amounts while allowing disclosure to authorities
+// Hide transaction amounts while allowing disclosure to authorities via Fabric Weave
 const payrollTx = await Fabricant.executePrivate(payrollTransaction, {
   privacy: {
-    provider: 'arbor',
+    provider: 'arbor', // Fabric Weave
     compression: true,
   },
 });
@@ -259,10 +259,10 @@ const payrollTx = await Fabricant.executePrivate(payrollTransaction, {
 ### 2. Private Airdrops
 
 ```typescript
-// Mass airdrop to millions of users at minimal cost
+// Mass airdrop to millions of users at minimal cost via Fabric Weave
 const airdropTx = await Fabricant.executePrivate(airdropTransaction, {
   privacy: {
-    provider: 'arbor',
+    provider: 'arbor', // Fabric Weave
     compression: true,
   },
 });
@@ -275,10 +275,10 @@ console.log(`Savings: ${savings.savingsPercent.toFixed(2)}%`);
 ### 3. Confidential Order Books (Dark Pools)
 
 ```typescript
-// Hide order size and price until execution
+// Hide order size and price until execution via Fabric Weave
 const orderTx = await Fabricant.executePrivate(orderTransaction, {
   privacy: {
-    provider: 'arbor',
+    provider: 'arbor', // Fabric Weave
     compression: true,
   },
 });
@@ -287,10 +287,10 @@ const orderTx = await Fabricant.executePrivate(orderTransaction, {
 ### 4. Private Governance Voting
 
 ```typescript
-// Blind voting with results revealed after period ends
+// Blind voting with results revealed after period ends via Fabric Weave
 const voteTx = await Fabricant.executePrivate(voteTransaction, {
   privacy: {
-    provider: 'arbor',
+    provider: 'arbor', // Fabric Weave
     compression: true,
   },
 });
@@ -300,7 +300,7 @@ const voteTx = await Fabricant.executePrivate(voteTransaction, {
 
 ### ZK Compression Architecture
 
-Arbor uses **Sparse Binary Merkle Trees** to compress on-chain state:
+Fabric Weave uses **Sparse Binary Merkle Trees** to compress on-chain state:
 
 1. **State Compression**: Public state → Compressed private state
 2. **Proof Generation**: Groth16 proof system (128 bytes fixed size)
@@ -344,7 +344,7 @@ Arbor uses **Sparse Binary Merkle Trees** to compress on-chain state:
 2. **Enable Compression** - Always enable compression for cost efficiency
 3. **Validate Privacy Requirements** - Use Guard to validate privacy metadata
 4. **Estimate Costs First** - Use `estimateCompressionSavings()` before large operations
-5. **Combine with Pulsar** - Use risk assessment for private transactions
+5. **Combine with Fabric Pulse** - Use risk assessment for private transactions
 6. **Monitor Privacy Metadata** - Ensure `requiresPrivacy` and `compressionEnabled` are set correctly
 
 ## Examples
@@ -354,12 +354,12 @@ See [`examples/pulsar-arbor-integration.ts`](../examples/pulsar-arbor-integratio
 - Private transaction execution
 - Cost estimation
 - Optimized private transactions
-- Combined Pulsar + Arbor workflows
+- Combined Fabric Pulse + Fabric Weave workflows
 
 ## Support
 
 - GitHub Issues: https://github.com/psyto/fabricant/issues
 - Documentation: https://github.com/psyto/fabricant
 - Twitter: https://x.com/psyto
-- Arbor Repository: https://github.com/psyto/arbor
+- Fabric Weave Repository: https://github.com/psyto/arbor
 

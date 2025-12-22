@@ -43,13 +43,13 @@ export async function validateTransaction(
     warnings.push(...detectedWarnings);
   }
 
-  // Pulsar risk assessment (if enabled)
+  // Fabric Pulse risk assessment (if enabled)
   if (config.pulsar?.enabled && transaction.assetAddresses) {
     const pulsarWarnings = await validatePulsarRisk(transaction, config.pulsar);
     warnings.push(...pulsarWarnings);
   }
 
-  // Privacy compliance validation (for Arbor integration)
+  // Privacy compliance validation (for Fabric Weave integration)
   if (transaction.privacyMetadata?.requiresPrivacy) {
     const privacyWarnings = validatePrivacyRequirements(transaction);
     warnings.push(...privacyWarnings);
@@ -91,7 +91,7 @@ export async function validateTransaction(
 }
 
 /**
- * Validates transaction against Pulsar risk metrics
+ * Validates transaction against Fabric Pulse risk metrics
  */
 async function validatePulsarRisk(
   transaction: Transaction,
@@ -172,13 +172,13 @@ async function validatePulsarRisk(
       }
     }
   } catch (error) {
-    // If Pulsar fails and fallback is enabled, continue without warnings
+    // If Fabric Pulse fails and fallback is enabled, continue without warnings
     // Otherwise, log the error (could add error warning if needed)
     if (!pulsarConfig.fallbackOnError) {
       warnings.push({
         patternId: PatternId.SignerMismatch,
         severity: Severity.Warning,
-        message: `Pulsar risk assessment failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        message: `Fabric Pulse risk assessment failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
         timestamp: Date.now(),
       });
     }

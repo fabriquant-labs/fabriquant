@@ -1,8 +1,11 @@
 /**
- * Pulsar and Arbor Integration Examples
+ * Fabric Pulse and Fabric Weave Integration Examples
  *
- * This example demonstrates how to use Pulsar (Risk Oracle) and Arbor (Privacy Layer)
- * with Fabricant's Guard and execution system.
+ * This example demonstrates how to use Fabric Pulse (The Quality Gauge) and 
+ * Fabric Weave (The Hidden Stitch) with Fabricant's Guard and execution system.
+ * 
+ * Note: Classes are still exported as 'Pulsar' and provider identifiers use 'arbor'
+ * for backward compatibility, but represent Fabric Pulse and Fabric Weave respectively.
  */
 
 import {
@@ -14,20 +17,20 @@ import {
   type GuardConfig,
 } from '@fabricant/sdk';
 
-// Example 1: Using Pulsar for Risk Assessment
+// Example 1: Using Fabric Pulse for Risk Assessment
 async function pulsarRiskAssessment() {
-  console.log('=== Example 1: Pulsar Risk Assessment ===\n');
+  console.log('=== Example 1: Fabric Pulse Risk Assessment ===\n');
 
-  // Create Guard with Pulsar enabled
+  // Create Guard with Fabric Pulse enabled
   const guard = new Guard({
-    pulsar: {
+    pulsar: { // Fabric Pulse configuration
       enabled: true,
       riskThreshold: 0.7, // Block transactions with risk score > 0.7
       enableComplianceCheck: true,
       enableCounterpartyCheck: true,
       enableOracleCheck: true,
       cacheTTL: 60000, // Cache for 1 minute
-      fallbackOnError: true, // Allow transactions if Pulsar API fails
+      fallbackOnError: true, // Allow transactions if Fabric Pulse API fails
     },
     mode: 'block',
     riskTolerance: 'moderate',
@@ -41,7 +44,7 @@ async function pulsarRiskAssessment() {
     instructions: [],
   };
 
-  // Validate transaction (Pulsar will check risk metrics)
+  // Validate transaction (Fabric Pulse will check risk metrics)
   const result = await guard.validateTransaction(tx);
 
   console.log('Transaction Valid:', result.isValid);
@@ -57,9 +60,9 @@ async function pulsarRiskAssessment() {
   }
 }
 
-// Example 2: Using Pulsar Cache
+// Example 2: Using Fabric Pulse Cache
 async function pulsarCacheExample() {
-  console.log('\n=== Example 2: Pulsar Cache ===\n');
+  console.log('\n=== Example 2: Fabric Pulse Cache ===\n');
 
   // Query risk metrics (will be cached)
   const metrics1 = await Pulsar.getRiskMetrics('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
@@ -101,9 +104,9 @@ async function batchRiskAssessment() {
   }
 }
 
-// Example 4: Private Transaction Execution with Arbor
+// Example 4: Private Transaction Execution with Fabric Weave
 async function privateTransactionExample() {
-  console.log('\n=== Example 4: Private Transaction with Arbor ===\n');
+  console.log('\n=== Example 4: Private Transaction with Fabric Weave ===\n');
 
   const guard = new Guard({
     mode: 'block',
@@ -120,11 +123,11 @@ async function privateTransactionExample() {
     },
   };
 
-  // Execute private transaction
+  // Execute private transaction via Fabric Weave
   const result = await Fabricant.executePrivate(tx, {
     with: guard,
     privacy: {
-      provider: 'arbor',
+      provider: 'arbor', // Fabric Weave
       compression: true,
     },
   });
@@ -162,11 +165,11 @@ async function optimizedPrivateTransaction() {
     instructions: [],
   };
 
-  // Optimize with privacy enabled
+  // Optimize with privacy enabled via Fabric Weave
   const optimized = FabricCore.optimize(tx, {
     enablePrivacy: true,
     compressionLevel: 'high',
-    privacyProvider: 'arbor',
+    privacyProvider: 'arbor', // Fabric Weave
   });
 
   console.log('Original Transaction:', tx.id);
@@ -174,23 +177,23 @@ async function optimizedPrivateTransaction() {
   console.log('Privacy Enabled:', optimized.privacyMetadata?.requiresPrivacy);
   console.log('Compression Enabled:', optimized.privacyMetadata?.compressionEnabled);
 
-  // Compress with Arbor
+  // Compress with Fabric Weave
   const compressed = await FabricCore.compressWithArbor(optimized, {
     enabled: true,
     compressionLevel: 'high',
-    provider: 'arbor',
+    provider: 'arbor', // Fabric Weave
   });
 
   console.log('Compressed Transaction:', compressed.id);
 }
 
-// Example 7: Combined Pulsar + Arbor Workflow
+// Example 7: Combined Fabric Pulse + Fabric Weave Workflow
 async function combinedWorkflow() {
-  console.log('\n=== Example 7: Combined Pulsar + Arbor Workflow ===\n');
+  console.log('\n=== Example 7: Combined Fabric Pulse + Fabric Weave Workflow ===\n');
 
-  // Step 1: Create Guard with Pulsar risk assessment
+  // Step 1: Create Guard with Fabric Pulse risk assessment
   const guard = new Guard({
-    pulsar: {
+    pulsar: { // Fabric Pulse configuration
       enabled: true,
       riskThreshold: 0.6,
       enableComplianceCheck: true,
@@ -207,22 +210,22 @@ async function combinedWorkflow() {
     instructions: [],
   };
 
-  // Step 3: Optimize with privacy
+  // Step 3: Optimize with privacy via Fabric Weave
   const optimized = FabricCore.optimize(tx, {
     enablePrivacy: true,
     compressionLevel: 'high',
   });
 
-  // Step 4: Validate with Guard (includes Pulsar check)
+  // Step 4: Validate with Guard (includes Fabric Pulse check)
   const validation = await guard.validateTransaction(optimized);
   console.log('Validation Result:', validation.isValid);
 
   if (validation.isValid) {
-    // Step 5: Execute as private transaction
+    // Step 5: Execute as private transaction via Fabric Weave
     const result = await Fabricant.executePrivate(optimized, {
       with: guard,
       privacy: {
-        provider: 'arbor',
+        provider: 'arbor', // Fabric Weave
         compression: true,
       },
     });
