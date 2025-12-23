@@ -5,6 +5,7 @@ Pre-built execution patterns for common DeFi and AI agent use cases on Solana.
 ## Table of Contents
 
 - [Overview](#overview)
+- [Real DEX Integration](#real-dex-integration)
 - [Getting Started](#getting-started)
 - [Pattern Categories](#pattern-categories)
   - [AI Trading Agents](#ai-trading-agents)
@@ -24,6 +25,75 @@ The Fabriquant Pattern Library provides ready-to-use execution templates that co
 - **Metrics tracking**: Built-in performance monitoring
 - **Dry-run mode**: Test without executing on-chain
 
+## Real DEX Integration
+
+The Pattern Library now supports real-time DEX integration via Jupiter V6 aggregator, enabling production-ready trading with live price feeds and optimal routing.
+
+### Key Features
+
+- **Jupiter V6 Integration**: Real-time quotes, prices, and routes from Solana's leading DEX aggregator
+- **Price Feed Service**: Multi-source price aggregation with caching and subscriptions
+- **Flexible Architecture**: Swappable DEX adapters (Jupiter, Orca, Raydium, custom)
+- **Backward Compatible**: Opt-in via `enableRealDEX` flag - existing code works unchanged
+
+### Quick Start
+
+```typescript
+import {
+  ArbitragePattern,
+  PriceFeedService,
+  COMMON_TOKENS,
+  Guard
+} from '@fabriquant/sdk';
+
+// 1. Get real-time prices
+const priceFeed = new PriceFeedService();
+const solPrice = await priceFeed.getPrice(COMMON_TOKENS.SOL, COMMON_TOKENS.USDC);
+console.log(`SOL: $${solPrice}`);
+
+// 2. Use real DEX in patterns
+const arbitrage = new ArbitragePattern({
+  name: 'Live Arbitrage',
+  pairs: [{
+    base: { mint: COMMON_TOKENS.SOL, symbol: 'SOL', decimals: 9 },
+    quote: { mint: COMMON_TOKENS.USDC, symbol: 'USDC', decimals: 6 },
+  }],
+  dexs: [
+    { name: 'Orca', programId: 'whirL...', feeTier: 0.003 },
+    { name: 'Raydium', programId: 'Rayd...', feeTier: 0.0025 },
+  ],
+  minProfitPercent: 0.5,
+  tradeAmount: 1000,
+  maxSlippage: 0.01,
+  enableRealDEX: true,  // ✨ Enable live prices from Jupiter
+  guard: new Guard({ mode: 'block' }),
+});
+
+const result = await arbitrage.execute();
+```
+
+### Available Tokens
+
+```typescript
+import { COMMON_TOKENS } from '@fabriquant/sdk';
+
+// Common Solana tokens with mint addresses
+COMMON_TOKENS.SOL    // Wrapped SOL
+COMMON_TOKENS.USDC   // USD Coin
+COMMON_TOKENS.USDT   // Tether USD
+COMMON_TOKENS.RAY    // Raydium
+COMMON_TOKENS.SRM    // Serum
+COMMON_TOKENS.MNGO   // Mango
+COMMON_TOKENS.ORCA   // Orca
+```
+
+### Patterns Supporting Real DEX
+
+- **ArbitragePattern**: Live multi-DEX price comparison
+- **SwapPattern**: Optimal route fetching and execution
+
+More patterns coming soon!
+
 ## Getting Started
 
 ### Installation
@@ -34,6 +104,9 @@ import {
   SwapPattern,
   TreasuryRebalancing,
   Guard,
+  JupiterAdapter,        // ✨ For DEX integration
+  PriceFeedService,      // ✨ For price feeds
+  COMMON_TOKENS,         // ✨ For token mints
 } from '@fabriquant/sdk';
 ```
 
@@ -179,39 +252,60 @@ interface DCAConfig {
 
 #### Arbitrage Pattern
 
-Capture price differences across multiple DEXs with parallel execution.
+Capture price differences across multiple DEXs with parallel execution. Supports both simulated (testing) and real DEX integration (production) via Jupiter.
 
 **When to use:**
 - Price discrepancies between DEXs
 - High-frequency trading opportunities
 - MEV extraction
 
-**Example:**
+**Example (with Real DEX Integration):**
 
 ```typescript
-import { ArbitragePattern, Guard } from '@fabriquant/sdk';
+import { ArbitragePattern, Guard, COMMON_TOKENS } from '@fabriquant/sdk';
 
 const pattern = new ArbitragePattern({
   name: 'Multi-DEX Arbitrage',
   pairs: [
     {
-      base: { mint: 'So11...', symbol: 'SOL', decimals: 9 },
-      quote: { mint: 'EPjF...', symbol: 'USDC', decimals: 6 },
+      base: { mint: COMMON_TOKENS.SOL, symbol: 'SOL', decimals: 9 },
+      quote: { mint: COMMON_TOKENS.USDC, symbol: 'USDC', decimals: 6 },
     },
   ],
-  dexes: [
-    { name: 'Orca', programId: 'Orca...', feeTier: 0.003 },
+  dexs: [
+    { name: 'Orca', programId: 'whirL...', feeTier: 0.003 },
     { name: 'Raydium', programId: 'Rayd...', feeTier: 0.0025 },
-    { name: 'Jupiter', programId: 'Jupi...', feeTier: 0.002 },
   ],
   minProfitPercent: 0.5,        // 0.5% minimum profit
-  maxTradeSize: 10000,          // $10k max per trade
+  tradeAmount: 1000,            // $1k per trade
+  maxSlippage: 0.01,
   scanInterval: 5000,           // Scan every 5 seconds
+  enableRealDEX: true,          // ✨ Enable live price feeds from Jupiter
   guard: new Guard({ mode: 'block', maxSlippage: 0.01 }),
 });
 
 const result = await pattern.execute();
 console.log(`Found ${result.metadata.opportunitiesFound} opportunities`);
+console.log(`Total profit: $${result.metadata.totalProfit}`);
+```
+
+**Example (with Custom DEX Adapter):**
+
+```typescript
+import { ArbitragePattern, JupiterAdapter } from '@fabriquant/sdk';
+
+// Use custom adapter configuration
+const customAdapter = new JupiterAdapter({
+  cacheTTL: 10000,  // 10 second cache
+  timeout: 5000,    // 5 second timeout
+});
+
+const pattern = new ArbitragePattern({
+  name: 'Custom Arbitrage',
+  // ... config
+  enableRealDEX: true,
+  dexAdapter: customAdapter,  // ✨ Use custom adapter
+});
 ```
 
 **Configuration:**
@@ -220,10 +314,14 @@ console.log(`Found ${result.metadata.opportunitiesFound} opportunities`);
 interface ArbitrageConfig {
   name: string;
   pairs: TradingPair[];
-  dexes: DEX[];
+  dexs: DEX[];
   minProfitPercent: number;     // Minimum profit threshold
-  maxTradeSize: number;         // Maximum trade amount
+  tradeAmount: number;          // Amount to trade per arbitrage
+  maxSlippage: number;          // Maximum slippage tolerance
   scanInterval?: number;        // Scan frequency (ms)
+  autoExecute?: boolean;        // Execute opportunities automatically
+  enableRealDEX?: boolean;      // ✨ Enable real DEX integration (default: false)
+  dexAdapter?: DEXAdapter;      // ✨ Custom DEX adapter (overrides default Jupiter)
   guard?: Guard;
   dryRun?: boolean;
 }
@@ -389,22 +487,22 @@ Low-level DeFi operations with intelligent optimization.
 
 #### Swap Pattern
 
-Multi-route swap optimization with price impact minimization and intelligent order splitting.
+Multi-route swap optimization with price impact minimization and intelligent order splitting. Supports real-time route optimization via Jupiter aggregator.
 
 **When to use:**
 - Large swaps that impact price
 - Multi-DEX routing
 - Optimized trade execution
 
-**Example:**
+**Example (with Real DEX Integration):**
 
 ```typescript
-import { SwapPattern, Guard } from '@fabriquant/sdk';
+import { SwapPattern, Guard, COMMON_TOKENS } from '@fabriquant/sdk';
 
 const pattern = new SwapPattern({
   name: 'Optimized SOL Swap',
-  fromToken: { mint: 'So11...', symbol: 'SOL', decimals: 9 },
-  toToken: { mint: 'EPjF...', symbol: 'USDC', decimals: 6 },
+  fromToken: { mint: COMMON_TOKENS.SOL, symbol: 'SOL', decimals: 9 },
+  toToken: { mint: COMMON_TOKENS.USDC, symbol: 'USDC', decimals: 6 },
   amount: 100,
   currentPrice: {
     token: 'SOL',
@@ -412,7 +510,34 @@ const pattern = new SwapPattern({
     quoteCurrency: 'USDC',
     timestamp: Date.now(),
   },
-  routes: [
+  maxPriceImpact: 0.5,
+  enableSplitOrders: true,
+  enableRealDEX: true,          // ✨ Fetch optimal routes from Jupiter
+  guard: new Guard({ mode: 'block', maxSlippage: 0.01 }),
+});
+
+const result = await pattern.execute();
+const summary = pattern.getSummary();
+console.log('Routes used:', summary.routes.length);
+console.log('Total price impact:', summary.totalPriceImpact);
+console.log('Average price:', summary.averagePrice);
+```
+
+**Example (with Manual Routes - Testing Mode):**
+
+```typescript
+const pattern = new SwapPattern({
+  name: 'Manual Route Swap',
+  fromToken: { mint: COMMON_TOKENS.SOL, symbol: 'SOL', decimals: 9 },
+  toToken: { mint: COMMON_TOKENS.USDC, symbol: 'USDC', decimals: 6 },
+  amount: 100,
+  currentPrice: {
+    token: 'SOL',
+    price: 100,
+    quoteCurrency: 'USDC',
+    timestamp: Date.now(),
+  },
+  routes: [  // Manual routes for testing
     {
       dex: 'Orca',
       programId: 'Orca...',
@@ -434,11 +559,6 @@ const pattern = new SwapPattern({
   enableSplitOrders: true,
   guard: new Guard({ mode: 'block', maxSlippage: 0.01 }),
 });
-
-const result = await pattern.execute();
-const summary = pattern.getSummary();
-console.log('Total price impact:', summary.totalPriceImpact);
-console.log('Average price:', summary.averagePrice);
 ```
 
 **Configuration:**
@@ -450,10 +570,12 @@ interface SwapConfig {
   toToken: Token;
   amount: number;
   currentPrice: Price;
-  routes: SwapRoute[];
-  maxPriceImpact: number;       // Max allowed price impact (%)
-  enableSplitOrders?: boolean;  // Split across routes
-  minRouteAllocation?: number;  // Min allocation per route (%)
+  routes?: SwapRoute[];          // ✨ Optional if using enableRealDEX
+  maxPriceImpact: number;        // Max allowed price impact (%)
+  enableSplitOrders?: boolean;   // Split across routes
+  minRouteAllocation?: number;   // Min allocation per route (%)
+  enableRealDEX?: boolean;       // ✨ Enable real DEX integration (default: false)
+  dexAdapter?: DEXAdapter;       // ✨ Custom DEX adapter (overrides default Jupiter)
   guard?: Guard;
   dryRun?: boolean;
 }

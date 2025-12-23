@@ -131,10 +131,11 @@ fabriquant/
 - Risk oracle integration complete
 - Privacy layer scaffolding in place
 
-#### Phase 2: Pattern Library (Upcoming)
+#### Phase 2: Pattern Library ✅ (v0.2.0)
 - Pre-built execution templates for AI agents
 - DAO treasury management patterns
 - Automated trading strategies
+- Real DEX integration with Jupiter V6
 
 #### Phase 2.5: Full ZK Stack Integration (Upcoming)
 - Complete Privacy/Light Protocol integration
@@ -161,6 +162,96 @@ For users upgrading from pre-0.1.0 versions, see [MIGRATION.md](./MIGRATION.md) 
 
 ---
 
+## [0.2.0] - 2025-12-23
+
+### Added
+
+#### DEX Integration Module
+- **Jupiter V6 Integration**: Real-time price feeds, swap routing, and quote fetching from Solana's leading DEX aggregator
+  - `JupiterAdapter` class with quote/price/route API support
+  - Configurable caching with TTL (30s default) for optimal performance
+  - Timeout handling and error recovery
+  - Support for multiple token pairs
+
+- **Price Feed Service**: Multi-source price aggregation and management
+  - `PriceFeedService` class for aggregating prices from multiple DEX adapters
+  - Real-time price subscriptions with polling support
+  - Automatic fallback between adapters for reliability
+  - Cache management with statistics tracking
+  - Parallel price fetching for multiple tokens
+
+- **DEX Adapter Interface**: Swappable integration pattern
+  - Abstract `DEXAdapter` interface for adding custom DEX integrations
+  - Common types for `TokenMint`, `PriceQuote`, `SwapRoute`, `TokenPrice`, `MarketInfo`
+  - `COMMON_TOKENS` export with Solana token mint addresses (SOL, USDC, USDT, RAY, SRM, MNGO, ORCA)
+
+#### Pattern Library Enhancements
+- **ArbitragePattern**: Real DEX integration support
+  - Optional `enableRealDEX` flag to switch between simulated and live price feeds
+  - Custom `dexAdapter` configuration support
+  - Real-time multi-DEX price comparison using Jupiter
+  - Backward compatible with existing simulated tests
+
+- **SwapPattern**: Real routing optimization
+  - Optional `enableRealDEX` flag for live route fetching
+  - Automatic route optimization via Jupiter V6 API
+  - Conversion of Jupiter market infos to internal route format
+  - Fallback to configured routes if API unavailable
+
+#### Documentation
+- New module exports in `src/index.ts`:
+  - `JupiterAdapter`, `PriceFeedService`, `COMMON_TOKENS`
+  - DEX types: `TokenMint`, `PriceQuote`, `MarketInfo`, `SwapRoute`, `TokenPrice`, `DEXAdapter`, `PriceFeed`, `DEXConfig`
+- Complete API documentation for DEX integration in main index file
+
+#### Testing
+- **28 new DEX integration tests** (tests/dex-integration.test.ts - 616 lines)
+  - JupiterAdapter: quote fetching, price retrieval, route optimization, caching, error handling
+  - PriceFeedService: multi-adapter aggregation, subscriptions, fallback behavior, cache management
+  - Mock-based tests for reliable CI/CD without external API dependencies
+- **Test Coverage**: 417 total tests passing (389 existing + 28 new)
+
+### Changed
+
+#### Pattern Library
+- `ArbitrageConfig` interface: Added optional `enableRealDEX` and `dexAdapter` fields
+- `SwapConfig` interface: Added optional `enableRealDEX`, `dexAdapter` fields; made `routes` optional
+- Patterns now support both simulated (testing) and real DEX (production) execution modes
+
+#### Infrastructure
+- New `/src/dex/` directory with modular DEX integration architecture
+- Jupiter V6 API endpoints integrated: `https://quote-api.jup.ag/v6` and `https://price.jup.ag/v4`
+
+### Technical Details
+
+#### Architecture
+```
+src/dex/
+├── types.ts          # DEX adapter interfaces and common types (190 lines)
+├── jupiter.ts        # Jupiter V6 API client implementation (298 lines)
+├── price-feed.ts     # Price aggregation service (223 lines)
+└── index.ts          # Module exports (21 lines)
+```
+
+#### API Integration
+- Jupiter Quote API: Real-time swap quotes with route plans and price impact
+- Jupiter Price API: Token price data with vs-token comparison
+- Caching layer to minimize API calls and improve performance
+- AbortController support for request timeouts
+
+#### Backward Compatibility
+- All existing tests pass without modification
+- Patterns default to simulated mode (`enableRealDEX: false`)
+- Opt-in approach ensures zero breaking changes
+
+### Fixed
+- None - this is a feature-only release
+
+### Files Changed
+- 8 files modified, 1,483 insertions, 6 deletions
+- New files: `src/dex/*`, `tests/dex-integration.test.ts`
+- Modified: `src/index.ts`, `src/patterns/ai-agents/arbitrage.ts`, `src/patterns/defi/swap-pattern.ts`
+
 ## [Unreleased]
 
 Future releases will be documented here.
@@ -186,4 +277,5 @@ Future releases will be documented here.
 
 ---
 
+[0.2.0]: https://github.com/fabriquant-labs/fabriquant/releases/tag/v0.2.0
 [0.1.0]: https://github.com/fabriquant-labs/fabriquant/releases/tag/v0.1.0

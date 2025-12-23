@@ -37,6 +37,7 @@ A high-velocity liquidity engine that finds the smoothest path for asset movemen
 
 -   Integrated multi-DEX routing for automated rebalancing.
 -   Low-latency execution for high-frequency strategies.
+-   **Real DEX Integration:** Jupiter V6 aggregator support for live price feeds and optimal routing.
 
 ### 4. 🧭 Risk (Core: `pulsar`)
 
@@ -55,6 +56,16 @@ A privacy and scaling layer utilizing ZK Compression for shielded, cost-efficien
 -   **ZK Compression:** Massive cost reduction for state storage and account creation via Sparse Binary Merkle Trees.
 -   **Privacy by Default:** Shielded state management to ensure transaction confidentiality.
 -   **Efficient Execution:** Dedicated API designed for privacy-enabled operations without sacrificing speed.
+
+### 6. 🔄 DEX Integration
+
+**The Market Connector.**
+A unified interface for real-time price feeds, swap routing, and multi-DEX arbitrage across Solana.
+
+-   **Jupiter V6 Integration:** Real-time quotes, optimal routing, and price feeds from Solana's leading aggregator.
+-   **Price Feed Service:** Multi-source price aggregation with caching and subscription support.
+-   **Adapter Pattern:** Swappable DEX integrations (Jupiter, Orca, Raydium) with automatic fallback.
+-   **Pattern Support:** Seamlessly integrated with ArbitragePattern and SwapPattern for production trading.
 
 ---
 
@@ -147,6 +158,55 @@ const savings = FabricCore.estimateCompressionSavings(1000);
 console.log(`Savings: ${savings.savingsPercent.toFixed(2)}%`);
 ```
 
+### Real DEX Integration for Live Trading
+
+```typescript
+import { JupiterAdapter, PriceFeedService, COMMON_TOKENS, ArbitragePattern, Guard } from "@fabriquant/sdk";
+
+// 1. Set up price feed service
+const priceFeed = new PriceFeedService({
+    cacheTTL: 30000, // 30 second cache
+    enableFallback: true,
+});
+
+// 2. Get real-time price from Jupiter
+const solPrice = await priceFeed.getPrice(
+    COMMON_TOKENS.SOL,
+    COMMON_TOKENS.USDC
+);
+console.log(`SOL Price: $${solPrice}`);
+
+// 3. Subscribe to price updates
+const unsubscribe = priceFeed.subscribe(COMMON_TOKENS.SOL, (price) => {
+    console.log(`Updated SOL Price: $${price}`);
+});
+
+// 4. Use real DEX integration in arbitrage pattern
+const arbitrage = new ArbitragePattern({
+    name: 'Multi-DEX Arbitrage',
+    pairs: [{
+        base: { mint: COMMON_TOKENS.SOL, symbol: 'SOL', decimals: 9 },
+        quote: { mint: COMMON_TOKENS.USDC, symbol: 'USDC', decimals: 6 },
+    }],
+    dexs: [
+        { name: 'Orca', programId: 'whirL...', feeTier: 0.003 },
+        { name: 'Raydium', programId: 'Rayd...', feeTier: 0.0025 },
+    ],
+    minProfitPercent: 0.5,
+    tradeAmount: 1000,
+    maxSlippage: 0.01,
+    enableRealDEX: true, // Enable live price feeds from Jupiter
+    guard: new Guard({ mode: 'block', maxSlippage: 0.02 }),
+});
+
+const result = await arbitrage.execute();
+console.log(`Opportunities found: ${result.metadata?.opportunitiesFound}`);
+console.log(`Total profit: $${result.metadata?.totalProfit}`);
+
+// Clean up subscription
+unsubscribe();
+```
+
 > **Note:** The SDK is currently in active development. Core functionality is being integrated from standalone repositories.
 
 ---
@@ -155,8 +215,8 @@ console.log(`Savings: ${savings.savingsPercent.toFixed(2)}%`);
 
 -   **Phase 1: SDK Consolidation** ✅ - Merging core modules into `@fabriquant/sdk`.
 -   **Phase 1.5: Risk & Privacy Integration** ✅ - Risk oracle and Privacy layer integrated.
--   **Phase 2: Pattern Library** - Pre-built execution templates for AI Trading Agents and DAO Treasury Management.
--   **Phase 2.5: Chain Abstraction Layer** - Design chain abstraction architecture for cross-chain support.
+-   **Phase 2: Pattern Library** ✅ - Pre-built execution templates with real DEX integration (Jupiter V6).
+-   **Phase 2.5: Chain Abstraction Layer** 🏗️ - Design chain abstraction architecture for cross-chain support.
 -   **Phase 3: EVM Support - Guard & Risk** - Launch Guard and Risk for EVM chains (Ethereum, Polygon, Arbitrum).
 -   **Phase 3.5: Full ZK Stack Integration** - Complete Privacy/Light Protocol integration with proof generation.
 -   **Phase 4: EVM Support - Flow & Patterns** - Launch Flow for EVM and cross-chain liquidity access.
