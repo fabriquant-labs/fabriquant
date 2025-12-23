@@ -50,12 +50,12 @@ describe('TreasuryRebalancing', () => {
       {
         token: solToken,
         targetPercent: 40,
-        currentValue: 350000, // 35% (5% under)
+        currentValue: 340000, // 34% (6% under, exceeds 5% threshold)
       },
       {
         token: usdcToken,
         targetPercent: 40,
-        currentValue: 450000, // 45% (5% over)
+        currentValue: 460000, // 46% (6% over, exceeds 5% threshold)
       },
       {
         token: msolToken,
@@ -246,8 +246,8 @@ describe('TreasuryRebalancing', () => {
       const pattern = new TreasuryRebalancing(baseConfig);
       const summary = pattern.getSummary();
 
-      // SOL is 5% under, USDC is 5% over
-      expect(summary.maxDeviation).toBe(5);
+      // SOL is 6% under, USDC is 6% over
+      expect(summary.maxDeviation).toBe(6);
     });
   });
 

@@ -321,8 +321,11 @@ describe('LiquidityPattern', () => {
       expect(il).toBe(0); // No price change = no IL
     });
 
-    it('should calculate positive IL when price increases', () => {
+    it('should calculate positive IL when price increases', async () => {
       const pattern = new LiquidityPattern(addConfig);
+
+      // First create a position by executing
+      await pattern.execute();
 
       // Price doubles (100 -> 200)
       const il = pattern.calculateImpermanentLoss(200);
@@ -330,8 +333,11 @@ describe('LiquidityPattern', () => {
       expect(il).toBeLessThan(0); // IL is negative (loss)
     });
 
-    it('should calculate positive IL when price decreases', () => {
+    it('should calculate positive IL when price decreases', async () => {
       const pattern = new LiquidityPattern(addConfig);
+
+      // First create a position by executing
+      await pattern.execute();
 
       // Price halves (100 -> 50)
       const il = pattern.calculateImpermanentLoss(50);
