@@ -383,7 +383,7 @@ This fully automates posting while keeping your approval workflow local.
 ## Support
 
 - Issues: File in main repo or ask the DM bot (meta!)
-- Questions: Twitter DMs to @psyto
+- Questions: Twitter DMs to @fabrknt
 - Contributions: PRs welcome
 
 ---

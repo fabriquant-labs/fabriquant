@@ -153,7 +153,7 @@ function buildKnowledgeBase() {
       ],
       installation: 'npm install @fabrknt/sdk',
       repository: 'https://github.com/fabrknt/fabrknt',
-      twitter: '@psyto',
+      twitter: '@fabrknt',
       license: 'MIT - Open Source'
     }
   };

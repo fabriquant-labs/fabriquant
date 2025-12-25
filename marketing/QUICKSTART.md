@@ -212,4 +212,4 @@ Expected: $50-100/month total.
 
 ---
 
-Questions? DM @psyto on X or file an issue.
+Questions? DM @fabrknt on X or file an issue.

@@ -156,7 +156,7 @@ Fabrknt is a unified development stack for building on Solana with these core co
 - Improved documentation
 
 ## Community:
-- Twitter/X: @psyto
+- Twitter/X: @fabrknt
 - GitHub: fabrknt/fabrknt
 - Open to contributions and integrations
 `;

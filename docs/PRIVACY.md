@@ -366,5 +366,5 @@ See [`examples/pulsar-arbor-integration.ts`](../examples/pulsar-arbor-integratio
 
 -   GitHub Issues: https://github.com/fabrknt/fabrknt/issues
 -   Documentation: https://github.com/fabrknt/fabrknt
--   Twitter: https://x.com/psyto
+-   Twitter: https://x.com/fabrknt
 -   Privacy Repository: https://github.com/psyto/arbor

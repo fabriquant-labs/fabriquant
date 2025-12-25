@@ -4,7 +4,7 @@
 
 Fabrknt is a unified development stack designed to master Solana's Sealevel runtime while enabling cross-chain execution. We provide the high-performance looms and safety frameworks necessary for AI Agents and DeFi protocols to weave complex transactions with absolute precision across blockchains.
 
-[Documentation](https://github.com/fabrknt/fabrknt) | [Guard Docs](./docs/GUARD.md) | [Risk Docs](./docs/RISK.md) | [Privacy Docs](./docs/PRIVACY.md) | [X (Twitter)](https://x.com/psyto)
+[Documentation](https://github.com/fabrknt/fabrknt) | [Guard Docs](./docs/GUARD.md) | [Risk Docs](./docs/RISK.md) | [Privacy Docs](./docs/PRIVACY.md) | [X (Twitter)](https://x.com/fabrknt)
 
 ---
 
@@ -249,4 +249,4 @@ Fabrknt is an open-source initiative built by the community, for the community. 
 ---
 
 **Fabrknt: Weaving the Future of Autonomous Finance.**
-Built with ❤️ by **psyto** | Powered by **Solana**
+Built with ❤️ by **fabrknt** | Powered by **Solana**

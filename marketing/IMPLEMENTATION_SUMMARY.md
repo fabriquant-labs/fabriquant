@@ -341,5 +341,5 @@ Same as main project (MIT). This is an internal tool for Fabrknt marketing.
 
 **Built**: December 2025
 **By**: Claude Sonnet 4.5
-**For**: Fabrknt (@psyto)
+**For**: Fabrknt (@fabrknt)
 **Purpose**: Bootstrap-first AI-powered marketing with minimal time/cost investment

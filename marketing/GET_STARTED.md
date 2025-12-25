@@ -166,7 +166,7 @@ A: Absolutely! Just update the knowledge base and content templates.
 2. **Test your setup**: Run `./scripts/test-setup.sh`
 3. **Check logs**: See `logs/*.log` if using cron
 4. **File an issue**: GitHub issues on main repo
-5. **DM**: @psyto on X/Twitter
+5. **DM**: @fabrknt on X/Twitter
 
 ## What to Expect
 
@@ -213,4 +213,4 @@ Pick your path:
 
 Built with ❤️ using Claude Sonnet 4.5
 
-Questions? Check the docs or DM @psyto
+Questions? Check the docs or DM @fabrknt

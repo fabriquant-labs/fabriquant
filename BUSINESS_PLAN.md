@@ -1532,7 +1532,7 @@ class Guard {
 **Company**: Fabrknt  
 **Website**: https://github.com/fabrknt/fabrknt  
 **Email**: [Contact Email]  
-**Twitter**: [@psyto](https://x.com/psyto)  
+**Twitter**: [@fabrknt](https://x.com/fabrknt)  
 **GitHub**: [fabrknt/fabrknt](https://github.com/fabrknt/fabrknt)
 
 ---
