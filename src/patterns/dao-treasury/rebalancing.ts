@@ -7,7 +7,7 @@
 
 import type { Transaction } from '../../types';
 import { Loom } from '../../loom';
-import { Fabriquant } from '../../core/fabriquant';
+import { Fabrknt } from '../../core/fabrknt';
 import {
   ExecutionPattern,
   PatternConfig,
@@ -130,7 +130,7 @@ export class TreasuryRebalancing extends ExecutionPattern {
         transactions.push(tx);
 
         if (!this.config.dryRun && this.config.guard) {
-          await Fabriquant.execute(tx, { with: this.config.guard });
+          await Fabrknt.execute(tx, { with: this.config.guard });
         }
       }
 

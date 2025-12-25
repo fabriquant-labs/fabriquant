@@ -1,6 +1,6 @@
 # Marketing Automation Implementation Summary
 
-This document summarizes the AI-powered marketing automation system built for Fabriquant.
+This document summarizes the AI-powered marketing automation system built for Fabrknt.
 
 ## What Was Built
 
@@ -40,7 +40,7 @@ A complete AI-powered content generation and posting system:
 - **Continuous Mode**: Can run as background service checking every 5 minutes
 
 **Capabilities**:
-- Answer technical questions about Fabriquant
+- Answer technical questions about Fabrknt
 - Provide code examples
 - Guide users to documentation
 - Handle follow-up questions with context
@@ -235,7 +235,7 @@ Edit the `BRAND_VOICE` constant in `content-templates.js`:
 
 ```javascript
 export const BRAND_VOICE = `
-You are the voice of Fabriquant...
+You are the voice of Fabrknt...
 // ← Customize tone, style, messaging
 `;
 ```
@@ -335,11 +335,11 @@ After 1 month, you should have:
 
 ## License
 
-Same as main project (MIT). This is an internal tool for Fabriquant marketing.
+Same as main project (MIT). This is an internal tool for Fabrknt marketing.
 
 ---
 
 **Built**: December 2025
 **By**: Claude Sonnet 4.5
-**For**: Fabriquant (@psyto)
+**For**: Fabrknt (@psyto)
 **Purpose**: Bootstrap-first AI-powered marketing with minimal time/cost investment

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Chain Abstraction Layer enables Fabriquant's portable components (Guard, Risk, Flow, Patterns) to work across multiple blockchains through a unified interface. This architecture maintains our "Solana-First, Cross-Chain Enabled" positioning while enabling future expansion to EVM chains.
+The Chain Abstraction Layer enables Fabrknt's portable components (Guard, Risk, Flow, Patterns) to work across multiple blockchains through a unified interface. This architecture maintains our "Solana-First, Cross-Chain Enabled" positioning while enabling future expansion to EVM chains.
 
 ## Architecture
 

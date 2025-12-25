@@ -7,7 +7,7 @@
 
 import type { Transaction } from '../../types';
 import { Loom } from '../../loom';
-import { Fabriquant } from '../../core/fabriquant';
+import { Fabrknt } from '../../core/fabrknt';
 import { FabricCore } from '../../fabric';
 import {
   ExecutionPattern,
@@ -374,7 +374,7 @@ export class ArbitragePattern extends ExecutionPattern {
     // Execute transactions if not in dry-run mode
     if (!this.config.dryRun && this.config.guard) {
       for (const tx of transactions) {
-        await Fabriquant.execute(tx, { with: this.config.guard });
+        await Fabrknt.execute(tx, { with: this.config.guard });
       }
     }
 

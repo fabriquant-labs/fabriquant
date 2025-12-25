@@ -14,8 +14,8 @@ vi.mock('../../src/loom', () => ({
   },
 }));
 
-vi.mock('../../src/core/fabriquant', () => ({
-  Fabriquant: {
+vi.mock('../../src/core/fabrknt', () => ({
+  Fabrknt: {
     execute: vi.fn(async () => ({ success: true })),
   },
 }));
@@ -358,7 +358,7 @@ describe('ArbitragePattern', () => {
 
   describe('Guard Integration', () => {
     it('should execute with Guard when provided', async () => {
-      const { Fabriquant } = await import('../../src/core/fabriquant');
+      const { Fabrknt } = await import('../../src/core/fabrknt');
       const guard = new Guard({ mode: 'block', maxSlippage: 0.01 });
 
       const pattern = new ArbitragePattern({
@@ -370,9 +370,9 @@ describe('ArbitragePattern', () => {
 
       const result = await pattern.execute();
 
-      // Fabriquant.execute called only when opportunities are found and executed
+      // Fabrknt.execute called only when opportunities are found and executed
       if (result.metadata?.opportunitiesExecuted && result.metadata.opportunitiesExecuted > 0) {
-        expect(Fabriquant.execute).toHaveBeenCalled();
+        expect(Fabrknt.execute).toHaveBeenCalled();
       } else {
         // No opportunities found/executed with random prices
         expect(result.success).toBe(true);

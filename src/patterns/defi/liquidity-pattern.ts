@@ -7,7 +7,7 @@
 
 import type { Transaction } from '../../types';
 import { Loom } from '../../loom';
-import { Fabriquant } from '../../core/fabriquant';
+import { Fabrknt } from '../../core/fabrknt';
 import {
   ExecutionPattern,
   PatternConfig,
@@ -164,7 +164,7 @@ export class LiquidityPattern extends ExecutionPattern {
       // Execute transactions
       if (!this.config.dryRun && this.config.guard) {
         for (const transaction of transactions) {
-          await Fabriquant.execute(transaction, { with: this.config.guard });
+          await Fabrknt.execute(transaction, { with: this.config.guard });
         }
       }
 

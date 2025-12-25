@@ -14,8 +14,8 @@ vi.mock('../../src/loom', () => ({
   },
 }));
 
-vi.mock('../../src/core/fabriquant', () => ({
-  Fabriquant: {
+vi.mock('../../src/core/fabrknt', () => ({
+  Fabrknt: {
     execute: vi.fn(async () => ({ success: true })),
   },
 }));
@@ -323,7 +323,7 @@ describe('TreasuryRebalancing', () => {
 
   describe('Guard Integration', () => {
     it('should execute with Guard when provided', async () => {
-      const { Fabriquant } = await import('../../src/core/fabriquant');
+      const { Fabrknt } = await import('../../src/core/fabrknt');
       const guard = new Guard({ mode: 'block', maxSlippage: 0.02 });
 
       const pattern = new TreasuryRebalancing({
@@ -335,7 +335,7 @@ describe('TreasuryRebalancing', () => {
       await pattern.execute();
 
       if (pattern.needsRebalancing()) {
-        expect(Fabriquant.execute).toHaveBeenCalled();
+        expect(Fabrknt.execute).toHaveBeenCalled();
       }
     });
   });

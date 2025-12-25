@@ -1,6 +1,6 @@
 # 🚀 Get Started with AI-Powered Marketing
 
-You now have a complete AI-powered marketing automation system for Fabriquant!
+You now have a complete AI-powered marketing automation system for Fabrknt!
 
 ## What You Have
 
@@ -12,7 +12,7 @@ You now have a complete AI-powered marketing automation system for Fabriquant!
 
 ### ✅ AI Developer Advocate Bot
 - 24/7 DM responder on X/Twitter
-- Answers technical questions about Fabriquant
+- Answers technical questions about Fabrknt
 - Uses your actual documentation
 - **Result**: Instant support for developers worldwide
 
@@ -146,7 +146,7 @@ No code changes needed for basic tweaks!
 A: Only after you approve content. Review mode is ON by default for safety.
 
 **Q: How do I stop it?**
-A: `pm2 stop fabriquant-dm-bot` for DM bot. Remove cron jobs to stop auto-posting.
+A: `pm2 stop fabrknt-dm-bot` for DM bot. Remove cron jobs to stop auto-posting.
 
 **Q: Can I edit generated content?**
 A: Yes! The review CLI has an [e]dit option.
@@ -197,7 +197,7 @@ A: Absolutely! Just update the knowledge base and content templates.
 After 1 month you should have:
 - ✅ 40-50 tweets posted
 - ✅ Growing follower count
-- ✅ Developers discovering Fabriquant via search/recommendations
+- ✅ Developers discovering Fabrknt via search/recommendations
 - ✅ DM questions being answered 24/7
 - ✅ <2 hours/week time commitment
 - ✅ <$100/month cost

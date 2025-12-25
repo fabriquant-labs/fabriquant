@@ -1,4 +1,4 @@
-# Fabriquant Pattern Library
+# Fabrknt Pattern Library
 
 Pre-built execution patterns for common DeFi and AI agent use cases on Solana.
 
@@ -17,7 +17,7 @@ Pre-built execution patterns for common DeFi and AI agent use cases on Solana.
 
 ## Overview
 
-The Fabriquant Pattern Library provides ready-to-use execution templates that combine multiple SDK components (Loom, Guard, FabricCore, Pulsar) to solve common DeFi challenges. Each pattern includes:
+The Fabrknt Pattern Library provides ready-to-use execution templates that combine multiple SDK components (Loom, Guard, FabricCore, Pulsar) to solve common DeFi challenges. Each pattern includes:
 
 - **Pre-configured security**: Integrated Guard validation
 - **Optimized execution**: Loom-powered transaction routing
@@ -867,5 +867,5 @@ for (const tx of result.transactions) {
 ## Support
 
 For questions or issues:
-- GitHub Issues: [fabriquant/issues](https://github.com/your-org/fabriquant/issues)
-- Documentation: [docs.fabriquant.dev](https://docs.fabriquant.dev)
+- GitHub Issues: [fabrknt/issues](https://github.com/your-org/fabrknt/issues)
+- Documentation: [docs.fabrknt.dev](https://docs.fabrknt.dev)

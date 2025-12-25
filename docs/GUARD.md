@@ -2,7 +2,7 @@
 
 ## Overview
 
-Guard is the quality control layer of the Fabriquant SDK, designed to prevent unauthorized drain, excessive slippage, and malicious operations in Solana transactions. It provides real-time security pattern detection and configurable validation rules.
+Guard is the quality control layer of the Fabrknt SDK, designed to prevent unauthorized drain, excessive slippage, and malicious operations in Solana transactions. It provides real-time security pattern detection and configurable validation rules.
 
 ## Features
 
@@ -437,26 +437,26 @@ const result = await guard.validateTransaction(privateTx);
 // Guard will warn if privacy is requested but compression is disabled
 ```
 
-## Integration with Fabriquant
+## Integration with Fabrknt
 
 ### Standard Execution
 
 ```typescript
-import { Fabriquant, Guard } from "@fabrknt/sdk";
+import { Fabrknt, Guard } from "@fabrknt/sdk";
 
 const guard = new Guard({
     maxSlippage: 1.0,
     emergencyStop: false,
 });
 
-// Guard is automatically used by Fabriquant.execute()
-await Fabriquant.execute(tx, { with: guard });
+// Guard is automatically used by Fabrknt.execute()
+await Fabrknt.execute(tx, { with: guard });
 ```
 
 ### Execution with Risk Assessment
 
 ```typescript
-import { Fabriquant, Guard } from "@fabrknt/sdk";
+import { Fabrknt, Guard } from "@fabrknt/sdk";
 
 const guard = new Guard({
     pulsar: {
@@ -476,14 +476,14 @@ const tx = {
     instructions: [],
 };
 
-// Fabriquant.execute() will check Risk before execution
-const result = await Fabriquant.execute(tx, { with: guard });
+// Fabrknt.execute() will check Risk before execution
+const result = await Fabrknt.execute(tx, { with: guard });
 ```
 
 ### Private Transaction Execution
 
 ```typescript
-import { Fabriquant, Guard } from "@fabrknt/sdk";
+import { Fabrknt, Guard } from "@fabrknt/sdk";
 
 const guard = new Guard({ riskTolerance: "moderate" });
 
@@ -494,7 +494,7 @@ const tx = {
 };
 
 // Execute as private transaction with Privacy layer
-const result = await Fabriquant.executePrivate(tx, {
+const result = await Fabrknt.executePrivate(tx, {
     with: guard,
     privacy: {
         provider: "arbor", // Privacy

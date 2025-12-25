@@ -194,7 +194,7 @@ export function getDefaultEVMNetworkConfig(
 }
 
 /**
- * Get chain ID from Fabriquant chain identifier
+ * Get chain ID from Fabrknt chain identifier
  *
  * @param chain - Chain identifier
  * @param network - Network identifier

@@ -14,8 +14,8 @@ vi.mock('../../src/loom', () => ({
   },
 }));
 
-vi.mock('../../src/core/fabriquant', () => ({
-  Fabriquant: {
+vi.mock('../../src/core/fabrknt', () => ({
+  Fabrknt: {
     execute: vi.fn(async () => ({ success: true })),
   },
 }));
@@ -363,7 +363,7 @@ describe('YieldFarmingPattern', () => {
 
   describe('Guard Integration', () => {
     it('should execute with Guard when provided', async () => {
-      const { Fabriquant } = await import('../../src/core/fabriquant');
+      const { Fabrknt } = await import('../../src/core/fabrknt');
       const guard = new Guard({ mode: 'block', maxSlippage: 0.01 });
 
       const pattern = new YieldFarmingPattern({
@@ -374,7 +374,7 @@ describe('YieldFarmingPattern', () => {
 
       await pattern.execute();
 
-      expect(Fabriquant.execute).toHaveBeenCalled();
+      expect(Fabrknt.execute).toHaveBeenCalled();
     });
   });
 

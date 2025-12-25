@@ -6,7 +6,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-echo "🕐 Setting up cron jobs for Fabriquant marketing automation"
+echo "🕐 Setting up cron jobs for Fabrknt marketing automation"
 echo ""
 echo "This will add the following cron jobs:"
 echo ""
@@ -34,15 +34,15 @@ TEMP_CRON=$(mktemp)
 crontab -l > "$TEMP_CRON" 2>/dev/null || true
 
 # Check if our jobs already exist
-if grep -q "fabriquant" "$TEMP_CRON"; then
-    echo "⚠️  Fabriquant cron jobs already exist. Removing old ones..."
-    grep -v "fabriquant" "$TEMP_CRON" > "${TEMP_CRON}.new"
+if grep -q "fabrknt" "$TEMP_CRON"; then
+    echo "⚠️  Fabrknt cron jobs already exist. Removing old ones..."
+    grep -v "fabrknt" "$TEMP_CRON" > "${TEMP_CRON}.new"
     mv "${TEMP_CRON}.new" "$TEMP_CRON"
 fi
 
 # Add new jobs
 echo "" >> "$TEMP_CRON"
-echo "# Fabriquant Marketing Automation" >> "$TEMP_CRON"
+echo "# Fabrknt Marketing Automation" >> "$TEMP_CRON"
 echo "0 8,11,14,17,20 * * * cd $PROJECT_DIR && npm run post:approved >> $PROJECT_DIR/logs/cron-post.log 2>&1" >> "$TEMP_CRON"
 echo "0 8 * * 1 cd $PROJECT_DIR && npm run generate:batch >> $PROJECT_DIR/logs/cron-generate.log 2>&1" >> "$TEMP_CRON"
 
@@ -57,7 +57,7 @@ echo ""
 echo "✅ Cron jobs installed successfully!"
 echo ""
 echo "To view your crontab: crontab -l"
-echo "To remove these jobs: crontab -e (then delete the Fabriquant lines)"
+echo "To remove these jobs: crontab -e (then delete the Fabrknt lines)"
 echo ""
 echo "Logs will be saved to:"
 echo "  - $PROJECT_DIR/logs/cron-post.log"

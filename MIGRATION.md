@@ -1,6 +1,6 @@
 # Migration Guide
 
-This guide helps you migrate from older naming conventions to the new **Fabriquant** branding introduced in v0.1.0.
+This guide helps you migrate from older naming conventions to the new **Fabrknt** branding introduced in v0.1.0.
 
 ## Overview of Changes
 
@@ -58,12 +58,12 @@ The v0.1.0 release includes a complete rebranding with simplified, clearer compo
 
 | Category | Old Name | New Name | Class/Export | Backward Compatible? |
 |----------|----------|----------|--------------|---------------------|
-| **Project** | Fabricant | Fabriquant | - | ❌ Breaking change |
+| **Project** | Fabricant | Fabrknt | - | ❌ Breaking change |
 | **Package** | `@fabricant/sdk` | `@fabrknt/sdk` | - | ❌ Breaking change |
 | **Risk Component** | Fabric Pulse | Risk | `Pulsar` | ✅ Yes (class name unchanged) |
 | **Privacy Component** | Fabric Weave | Privacy | - | ✅ Yes (identifier unchanged) |
-| **Suite Name** | Fabricant Suite | Fabriquant Suite | - | ❌ Documentation only |
-| **Main Class** | Fabricant | Fabriquant | `Fabriquant` | ❌ Breaking change |
+| **Suite Name** | Fabricant Suite | Fabrknt Suite | - | ❌ Documentation only |
+| **Main Class** | Fabricant | Fabrknt | `Fabrknt` | ❌ Breaking change |
 
 ### Detailed Component Changes
 
@@ -113,7 +113,7 @@ const tx = FabricCore.optimize(transaction, {
   privacyProvider: "arbor", // Identifier unchanged
 });
 
-await Fabriquant.executePrivate(tx, {
+await Fabrknt.executePrivate(tx, {
   with: guard,
   privacy: {
     provider: "arbor", // Identifier unchanged
@@ -131,7 +131,7 @@ await Fabriquant.executePrivate(tx, {
 
 **Class Name Change:**
 - **Old Name**: `Fabricant`
-- **New Name**: `Fabriquant`
+- **New Name**: `Fabrknt`
 
 **Code Changes Required** ❌
 
@@ -143,8 +143,8 @@ import { Fabricant } from "@fabricant/sdk";
 await Fabricant.execute(tx, { with: guard });
 
 // New
-import { Fabriquant } from "@fabrknt/sdk";
-await Fabriquant.execute(tx, { with: guard });
+import { Fabrknt } from "@fabrknt/sdk";
+await Fabrknt.execute(tx, { with: guard });
 ```
 
 ## Migration Examples
@@ -166,7 +166,7 @@ const result = await Fabricant.execute(transaction, { with: guard });
 
 **After (v0.1.0):**
 ```typescript
-import { Fabriquant, Guard } from "@fabrknt/sdk";
+import { Fabrknt, Guard } from "@fabrknt/sdk";
 
 const guard = new Guard({
   maxSlippage: 0.1,
@@ -174,12 +174,12 @@ const guard = new Guard({
   mode: "block",
 });
 
-const result = await Fabriquant.execute(transaction, { with: guard });
+const result = await Fabrknt.execute(transaction, { with: guard });
 ```
 
 **Changes:**
 1. ✅ Package name: `@fabricant/sdk` → `@fabrknt/sdk`
-2. ✅ Class name: `Fabricant` → `Fabriquant`
+2. ✅ Class name: `Fabricant` → `Fabrknt`
 
 ### Example 2: Risk Integration (Pulsar)
 
@@ -236,7 +236,7 @@ const result = await Fabricant.executePrivate(optimized, {
 
 **After (v0.1.0):**
 ```typescript
-import { Fabriquant, FabricCore } from "@fabrknt/sdk";
+import { Fabrknt, FabricCore } from "@fabrknt/sdk";
 
 // Optimize with Privacy (provider identifier remains "arbor")
 const optimized = FabricCore.optimize(tx, {
@@ -244,14 +244,14 @@ const optimized = FabricCore.optimize(tx, {
   privacyProvider: "arbor",
 });
 
-const result = await Fabriquant.executePrivate(optimized, {
+const result = await Fabrknt.executePrivate(optimized, {
   privacy: { provider: "arbor" },
 });
 ```
 
 **Changes:**
 1. ✅ Package name: `@fabricant/sdk` → `@fabrknt/sdk`
-2. ✅ Class name: `Fabricant` → `Fabriquant`
+2. ✅ Class name: `Fabricant` → `Fabrknt`
 3. ✅ Provider identifier `"arbor"` remains unchanged
 4. 📝 Documentation now calls this "Privacy" instead of "Fabric Weave"
 
@@ -290,7 +290,7 @@ const result = await Fabricant.executePrivate(optimized, {
 
 **After (v0.1.0):**
 ```typescript
-import { Fabriquant, Guard, Pulsar, FabricCore, Loom } from "@fabrknt/sdk";
+import { Fabrknt, Guard, Pulsar, FabricCore, Loom } from "@fabrknt/sdk";
 
 // Initialize Guard with Risk (class still named Pulsar)
 const guard = new Guard({
@@ -312,8 +312,8 @@ const optimized = FabricCore.optimize(tx, {
   privacyProvider: "arbor",
 });
 
-// Execute with Fabriquant
-const result = await Fabriquant.executePrivate(optimized, {
+// Execute with Fabrknt
+const result = await Fabrknt.executePrivate(optimized, {
   with: guard,
   privacy: { provider: "arbor", compression: true },
 });
@@ -321,7 +321,7 @@ const result = await Fabriquant.executePrivate(optimized, {
 
 **Changes:**
 1. ✅ Package name: `@fabricant/sdk` → `@fabrknt/sdk`
-2. ✅ Class name: `Fabricant` → `Fabriquant`
+2. ✅ Class name: `Fabricant` → `Fabrknt`
 3. ✅ All other APIs remain backward compatible
 
 ## Quick Migration Checklist
@@ -335,12 +335,12 @@ Use this checklist to ensure you've migrated everything:
 
 ### Code Changes
 - [ ] Updated all import statements from `@fabricant/sdk` to `@fabrknt/sdk`
-- [ ] Renamed `Fabricant` class to `Fabriquant` in all files
+- [ ] Renamed `Fabricant` class to `Fabrknt` in all files
 - [ ] Verified `Pulsar` class usage (no changes needed)
 - [ ] Verified `"arbor"` provider identifier usage (no changes needed)
 
 ### Documentation & Comments
-- [ ] Updated code comments referring to "Fabricant" → "Fabriquant"
+- [ ] Updated code comments referring to "Fabricant" → "Fabrknt"
 - [ ] Updated code comments referring to "Fabric Pulse" → "Risk"
 - [ ] Updated code comments referring to "Fabric Weave" → "Privacy"
 
@@ -363,13 +363,13 @@ We've designed this migration to minimize breaking changes:
 
 ### What's Breaking ❌
 - Package name: `@fabricant/sdk` → `@fabrknt/sdk`
-- Main class: `Fabricant` → `Fabriquant`
+- Main class: `Fabricant` → `Fabrknt`
 
 ## Why the Rebrand?
 
-The rebranding from "Fabricant" to "Fabriquant" brings several benefits:
+The rebranding from "Fabricant" to "Fabrknt" brings several benefits:
 
-1. **Clearer Identity**: The French spelling "Fabriquant" (meaning "manufacturer" or "creator") better reflects the precision and craftsmanship of the SDK
+1. **Clearer Identity**: The French spelling "Fabrknt" (meaning "manufacturer" or "creator") better reflects the precision and craftsmanship of the SDK
 2. **Component Clarity**: Simplified names (Risk, Privacy) are more intuitive than abstract names (Fabric Pulse, Fabric Weave)
 3. **SEO & Discoverability**: Unique spelling improves searchability and brand recognition
 4. **Unified Vision**: The "weaving" metaphor is now clearly expressed through component names and APIs
@@ -398,6 +398,6 @@ We'll provide ample notice before any deprecations.
 
 ---
 
-**Migration completed?** You're now ready to build with Fabriquant! 🎉
+**Migration completed?** You're now ready to build with Fabrknt! 🎉
 
 Check out the [README](./README.md) for usage examples and the [documentation](./docs/) for detailed API references.

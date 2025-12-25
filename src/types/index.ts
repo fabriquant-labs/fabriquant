@@ -1,8 +1,8 @@
 /**
- * Core types for the Fabriquant SDK
+ * Core types for the Fabrknt SDK
  */
 
-export interface FabriquantConfig {
+export interface FabrkntConfig {
     network?: "mainnet-beta" | "devnet" | "testnet";
     rpcUrl?: string;
     // Privacy configuration for Privacy integration

@@ -1,6 +1,6 @@
-# Contributing to Fabriquant
+# Contributing to Fabrknt
 
-Thank you for your interest in contributing to Fabriquant! This document provides guidelines and standards for contributing to the Precision Execution Stack for Solana.
+Thank you for your interest in contributing to Fabrknt! This document provides guidelines and standards for contributing to the Precision Execution Stack for Solana.
 
 ## Table of Contents
 
@@ -94,7 +94,7 @@ Thank you for your interest in contributing to Fabriquant! This document provide
 
 ```
 src/
-├── core/           # Core orchestration (Fabriquant class)
+├── core/           # Core orchestration (Fabrknt class)
 ├── guard/          # Security layer
 ├── pulsar/         # Risk assessment (backward compat: still named Pulsar)
 ├── fabric/         # Performance & Privacy layer
@@ -208,7 +208,7 @@ We follow **Conventional Commits** for clear and consistent commit history.
 - `risk`: Risk assessment (Pulsar)
 - `privacy`: Privacy layer (Arbor/FabricCore)
 - `loom`: Liquidity engine
-- `core`: Core orchestration (Fabriquant class)
+- `core`: Core orchestration (Fabrknt class)
 - `types`: Type definitions
 - `docs`: Documentation
 - `tests`: Test suite
@@ -353,8 +353,8 @@ Update these files when making changes to their respective components.
 
 ## License
 
-By contributing to Fabriquant, you agree that your contributions will be licensed under the same license as the project.
+By contributing to Fabrknt, you agree that your contributions will be licensed under the same license as the project.
 
 ---
 
-Thank you for contributing to Fabriquant! Together we're weaving the future of autonomous finance on Solana.
+Thank you for contributing to Fabrknt! Together we're weaving the future of autonomous finance on Solana.

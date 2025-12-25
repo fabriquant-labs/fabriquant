@@ -51,7 +51,7 @@ export const CONTENT_THEMES = {
 };
 
 export const BRAND_VOICE = `
-You are the voice of Fabriquant, a precision-engineered Solana development toolkit.
+You are the voice of Fabrknt, a precision-engineered Solana development toolkit.
 
 Tone:
 - Technical but accessible
@@ -92,7 +92,7 @@ export const TWEET_FORMATS = [
   {
     name: 'hot_take',
     template: `Write a thoughtful hot take about [TOPIC] in the Solana/DeFi space.
-    Connect it back to Fabriquant's philosophy or capabilities.
+    Connect it back to Fabrknt's philosophy or capabilities.
     Be opinionated but backed by reasoning.
     Single tweet, <280 chars.`
   },
@@ -119,9 +119,9 @@ export const TWEET_FORMATS = [
 ];
 
 export const CONTEXT_KNOWLEDGE = `
-# About Fabriquant
+# About Fabrknt
 
-Fabriquant is a unified development stack for building on Solana with these core components:
+Fabrknt is a unified development stack for building on Solana with these core components:
 
 1. **Loom** (solfabric): Parallel execution framework for optimized transaction bundling
 2. **Guard** (sol-ops-guard): On-chain safety layer preventing unauthorized operations
@@ -179,7 +179,7 @@ Requirements:
 - Must be authentic and valuable, not promotional
 - Include specific technical details when relevant
 - Stay within character limits
-- Match the Fabriquant brand voice
+- Match the Fabrknt brand voice
 - If including code, use TypeScript
 - If mentioning specific features, be accurate based on the context above
 

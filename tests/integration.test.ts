@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { Fabriquant } from '../src/core/fabriquant';
+import { Fabrknt } from '../src/core/fabrknt';
 import { Guard } from '../src/guard';
 import { Pulsar } from '../src/pulsar';
 import { FabricCore } from '../src/fabric';
@@ -44,7 +44,7 @@ describe('Integration Tests', () => {
         instructions: [],
       };
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('executed');
       expect(mockGetBatchRiskMetrics).toHaveBeenCalled();
@@ -83,7 +83,7 @@ describe('Integration Tests', () => {
         instructions: [],
       };
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('failed');
 
@@ -110,7 +110,7 @@ describe('Integration Tests', () => {
     });
   });
 
-  describe('Fabriquant + FabricCore Integration', () => {
+  describe('Fabrknt + FabricCore Integration', () => {
     it('should optimize and execute transaction with privacy', async () => {
       const tx: Transaction = {
         id: 'privacy-tx',
@@ -125,7 +125,7 @@ describe('Integration Tests', () => {
       });
 
       // Execute with privacy
-      const result = await Fabriquant.executePrivate(optimized);
+      const result = await Fabrknt.executePrivate(optimized);
 
       expect(result.status).toBe('executed');
       expect(result.privacyMetadata?.requiresPrivacy).toBe(true);
@@ -145,7 +145,7 @@ describe('Integration Tests', () => {
       });
 
       // Execute privately
-      const result = await Fabriquant.executePrivate(compressed);
+      const result = await Fabrknt.executePrivate(compressed);
 
       expect(result.status).toBe('executed');
       expect(result.privacyMetadata?.compressionEnabled).toBe(true);
@@ -164,7 +164,7 @@ describe('Integration Tests', () => {
         instructions: [],
       };
 
-      const result = await Fabriquant.executePrivate(tx, {
+      const result = await Fabrknt.executePrivate(tx, {
         privacy: { compression: true },
       });
 
@@ -172,7 +172,7 @@ describe('Integration Tests', () => {
     });
   });
 
-  describe('Loom + Fabriquant Integration', () => {
+  describe('Loom + Fabrknt Integration', () => {
     it('should weave and execute transaction', async () => {
       // Weave a transaction with Loom
       const tx = await Loom.weave({
@@ -182,8 +182,8 @@ describe('Integration Tests', () => {
         amount: 100,
       });
 
-      // Execute with Fabriquant
-      const result = await Fabriquant.execute(tx);
+      // Execute with Fabrknt
+      const result = await Fabrknt.execute(tx);
 
       expect(result.status).toBe('executed');
       expect(result.id).toContain('MULTI_ROUTE_SWAP');
@@ -204,7 +204,7 @@ describe('Integration Tests', () => {
       });
 
       // Execute with Guard
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('executed');
     });
@@ -219,7 +219,7 @@ describe('Integration Tests', () => {
       });
 
       // Execute privately
-      const result = await Fabriquant.executePrivate(tx);
+      const result = await Fabrknt.executePrivate(tx);
 
       expect(result.status).toBe('executed');
       expect(result.privacyMetadata?.requiresPrivacy).toBe(true);
@@ -278,7 +278,7 @@ describe('Integration Tests', () => {
       });
 
       // Step 5: Execute privately with Guard validation
-      const result = await Fabriquant.executePrivate(optimized, {
+      const result = await Fabrknt.executePrivate(optimized, {
         with: guard,
         privacy: {
           provider: 'arbor',
@@ -323,7 +323,7 @@ describe('Integration Tests', () => {
       });
 
       // Should execute successfully despite Risk API failure
-      const result = await Fabriquant.execute(txWithAssets, { with: guard });
+      const result = await Fabrknt.execute(txWithAssets, { with: guard });
 
       expect(result.status).toBe('executed');
 
@@ -347,7 +347,7 @@ describe('Integration Tests', () => {
       });
 
       const compressed = await FabricCore.compressWithArbor(tx);
-      const result = await Fabriquant.executePrivate(compressed);
+      const result = await Fabrknt.executePrivate(compressed);
 
       expect(result.status).toBe('executed');
       expect(result.privacyMetadata?.compressionEnabled).toBe(true);
@@ -370,7 +370,7 @@ describe('Integration Tests', () => {
         amount: 100,
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('failed');
     });
@@ -406,7 +406,7 @@ describe('Integration Tests', () => {
         instructions: [],
       };
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('failed');
 
@@ -430,7 +430,7 @@ describe('Integration Tests', () => {
           amount: i + 1,
         });
 
-        return Fabriquant.execute(tx, { with: guard });
+        return Fabrknt.execute(tx, { with: guard });
       });
 
       const results = await Promise.all(promises);
@@ -473,7 +473,7 @@ describe('Integration Tests', () => {
           instructions: [],
         };
 
-        return Fabriquant.execute(tx, { with: guard });
+        return Fabrknt.execute(tx, { with: guard });
       });
 
       const results = await Promise.all(promises);

@@ -8,7 +8,7 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-echo "🧪 Testing Fabriquant Marketing Automation Setup"
+echo "🧪 Testing Fabrknt Marketing Automation Setup"
 echo "================================================"
 echo ""
 

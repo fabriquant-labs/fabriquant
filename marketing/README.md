@@ -1,6 +1,6 @@
-# Fabriquant Marketing Automation
+# Fabrknt Marketing Automation
 
-AI-powered marketing automation system for Fabriquant, optimized for bootstrap budget (<$300/month) and minimal time commitment (<2 hours/week).
+AI-powered marketing automation system for Fabrknt, optimized for bootstrap budget (<$300/month) and minimal time commitment (<2 hours/week).
 
 ## What This Does
 
@@ -149,10 +149,10 @@ Add to your crontab:
 
 ```bash
 # Post approved content every 3 hours (8am-8pm)
-0 8,11,14,17,20 * * * cd /path/to/fabriquant/marketing && npm run post:approved
+0 8,11,14,17,20 * * * cd /path/to/fabrknt/marketing && npm run post:approved
 
 # Generate new batch every Monday at 8am
-0 8 * * 1 cd /path/to/fabriquant/marketing && npm run generate:batch
+0 8 * * 1 cd /path/to/fabrknt/marketing && npm run generate:batch
 ```
 
 ### DM Bot
@@ -184,10 +184,10 @@ npm run dm:bot -- --continuous --interval=10
 npm install -g pm2
 
 # Start DM bot
-pm2 start marketing/dm-bot/responder.js --name fabriquant-dm-bot -- --continuous
+pm2 start marketing/dm-bot/responder.js --name fabrknt-dm-bot -- --continuous
 
 # View logs
-pm2 logs fabriquant-dm-bot
+pm2 logs fabrknt-dm-bot
 
 # Auto-start on system reboot
 pm2 startup
@@ -311,7 +311,7 @@ POSTING_INTERVAL_HOURS=3
 - Check `dm-bot/dm-state.json` for errors
 - Verify Twitter API permissions include Direct Messages
 - Test with `npm run dm:bot` (single run) first
-- Check logs if running via PM2: `pm2 logs fabriquant-dm-bot`
+- Check logs if running via PM2: `pm2 logs fabrknt-dm-bot`
 
 ## Advanced: GitHub Actions Automation
 

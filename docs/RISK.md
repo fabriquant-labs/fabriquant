@@ -2,7 +2,7 @@
 
 ## Overview
 
-Risk (formerly Fabric Pulse/Pulsar) is the Risk Oracle component of Fabriquant, providing AI-driven risk assessment for Real World Assets (RWA) and asset integrity validation. It integrates seamlessly with Guard to provide institutional-grade risk metrics before transaction execution.
+Risk (formerly Fabric Pulse/Pulsar) is the Risk Oracle component of Fabrknt, providing AI-driven risk assessment for Real World Assets (RWA) and asset integrity validation. It integrates seamlessly with Guard to provide institutional-grade risk metrics before transaction execution.
 
 **Note:** The class is still exported as `Pulsar` for backward compatibility, but represents the Risk component.
 

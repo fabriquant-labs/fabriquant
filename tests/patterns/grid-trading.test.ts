@@ -4,7 +4,7 @@ import { Guard } from '../../src/guard';
 import type { GridTradingConfig } from '../../src/patterns/ai-agents/grid-trading';
 import type { Token, TradingPair, Price } from '../../src/patterns/types';
 
-// Mock Loom and Fabriquant
+// Mock Loom and Fabrknt
 vi.mock('../../src/loom', () => ({
   Loom: {
     weave: vi.fn(async (config: any) => ({
@@ -14,8 +14,8 @@ vi.mock('../../src/loom', () => ({
   },
 }));
 
-vi.mock('../../src/core/fabriquant', () => ({
-  Fabriquant: {
+vi.mock('../../src/core/fabrknt', () => ({
+  Fabrknt: {
     execute: vi.fn(async () => ({ success: true })),
   },
 }));
@@ -204,7 +204,7 @@ describe('GridTradingPattern', () => {
     });
 
     it('should not execute in dry-run mode', async () => {
-      const { Fabriquant } = await import('../../src/core/fabriquant');
+      const { Fabrknt } = await import('../../src/core/fabrknt');
       const pattern = new GridTradingPattern({
         ...baseConfig,
         dryRun: true,
@@ -214,7 +214,7 @@ describe('GridTradingPattern', () => {
       const status = pattern.getStatus();
 
       expect(status.executedLevels).toBe(0);
-      expect(Fabriquant.execute).not.toHaveBeenCalled();
+      expect(Fabrknt.execute).not.toHaveBeenCalled();
     });
 
     it('should execute with Guard when provided', async () => {

@@ -1,8 +1,8 @@
-# 🛠️ Fabriquant: The Precision Execution Stack — Solana-First, Cross-Chain Enabled
+# 🛠️ Fabrknt: The Precision Execution Stack — Solana-First, Cross-Chain Enabled
 
 **Engineered for Parallelism. Built for Autonomy. Woven for Speed.**
 
-Fabriquant is a unified development stack designed to master Solana's Sealevel runtime while enabling cross-chain execution. We provide the high-performance looms and safety frameworks necessary for AI Agents and DeFi protocols to weave complex transactions with absolute precision across blockchains.
+Fabrknt is a unified development stack designed to master Solana's Sealevel runtime while enabling cross-chain execution. We provide the high-performance looms and safety frameworks necessary for AI Agents and DeFi protocols to weave complex transactions with absolute precision across blockchains.
 
 [Documentation](https://github.com/fabrknt/fabrknt) | [Guard Docs](./docs/GUARD.md) | [Risk Docs](./docs/RISK.md) | [Privacy Docs](./docs/PRIVACY.md) | [X (Twitter)](https://x.com/psyto)
 
@@ -10,9 +10,9 @@ Fabriquant is a unified development stack designed to master Solana's Sealevel r
 
 ## 🧵 The Philosophy: "Weaving the Transaction Layer"
 
-In a parallel world, transactions are no longer a linear chain—they are a complex fabric. **Fabriquant** provides the tools to design, optimize, and secure this fabric, ensuring that every thread (transaction) is executed with maximum efficiency and zero conflict.
+In a parallel world, transactions are no longer a linear chain—they are a complex fabric. **Fabrknt** provides the tools to design, optimize, and secure this fabric, ensuring that every thread (transaction) is executed with maximum efficiency and zero conflict.
 
-## 📦 The Fabriquant Suite
+## 📦 The Fabrknt Suite
 
 ### 1. 🧵 Loom (Core: `solfabric`)
 
@@ -74,7 +74,7 @@ A unified interface for real-time price feeds, swap routing, and multi-DEX arbit
 ### Basic Transaction with Guard
 
 ```typescript
-import { Fabriquant, Guard, Loom } from "@fabrknt/sdk";
+import { Fabrknt, Guard, Loom } from "@fabrknt/sdk";
 
 // 1. Initialize the Precision Guard
 const guard = new Guard({
@@ -92,14 +92,14 @@ const tx = await Loom.weave({
     parallelPriority: true, // Enabled by Loom
 });
 
-// 3. Execute with Fabriquant Precision
-await Fabriquant.execute(tx, { with: guard });
+// 3. Execute with Fabrknt Precision
+await Fabrknt.execute(tx, { with: guard });
 ```
 
 ### Transaction with Risk Assessment
 
 ```typescript
-import { Fabriquant, Guard, Pulsar } from "@fabrknt/sdk";
+import { Fabrknt, Guard, Pulsar } from "@fabrknt/sdk";
 
 // Guard with Risk assessment enabled
 const guard = new Guard({
@@ -126,14 +126,14 @@ const tx = {
 // Risk automatically checks risk metrics during validation
 const result = await guard.validateTransaction(tx);
 if (result.isValid) {
-    await Fabriquant.execute(tx, { with: guard });
+    await Fabrknt.execute(tx, { with: guard });
 }
 ```
 
 ### Private Transaction with Privacy
 
 ```typescript
-import { Fabriquant, Guard, FabricCore } from "@fabrknt/sdk";
+import { Fabrknt, Guard, FabricCore } from "@fabrknt/sdk";
 
 const guard = new Guard({ riskTolerance: "moderate" });
 
@@ -145,7 +145,7 @@ const tx = FabricCore.optimize(transaction, {
 });
 
 // Execute as private transaction with ZK Compression
-const result = await Fabriquant.executePrivate(tx, {
+const result = await Fabrknt.executePrivate(tx, {
     with: guard,
     privacy: {
         provider: "arbor", // Privacy
@@ -220,7 +220,7 @@ unsubscribe();
 -   **Phase 3: EVM Support - Guard & Risk** - Launch Guard and Risk for EVM chains (Ethereum, Polygon, Arbitrum).
 -   **Phase 3.5: Full ZK Stack Integration** - Complete Privacy/Light Protocol integration with proof generation.
 -   **Phase 4: EVM Support - Flow & Patterns** - Launch Flow for EVM and cross-chain liquidity access.
--   **Phase 5: Fabriquant Mainnet** - Decentralized autonomous vault infrastructure leveraging the full stack.
+-   **Phase 5: Fabrknt Mainnet** - Decentralized autonomous vault infrastructure leveraging the full stack.
 
 **Strategy**: Solana-First, Cross-Chain Enabled — maintaining leadership in Solana's parallel execution while expanding portable components (Guard, Risk, Flow, Patterns) to EVM chains.
 
@@ -228,7 +228,7 @@ unsubscribe();
 
 ## 🤝 Join the Atelier
 
-Fabriquant is an open-source initiative built by the community, for the community. We operate as a bootstrap-first, solopreneur-led project leveraging AI tools to maximize efficiency and impact.
+Fabrknt is an open-source initiative built by the community, for the community. We operate as a bootstrap-first, solopreneur-led project leveraging AI tools to maximize efficiency and impact.
 
 -   **Builders:** Star our repos and contribute to the parallel execution revolution.
 -   **Projects:** Contact us for integration support for AI Agents and DeFi infrastructure.
@@ -248,5 +248,5 @@ Fabriquant is an open-source initiative built by the community, for the communit
 
 ---
 
-**Fabriquant: Weaving the Future of Autonomous Finance.**
+**Fabrknt: Weaving the Future of Autonomous Finance.**
 Built with ❤️ by **psyto** | Powered by **Solana**

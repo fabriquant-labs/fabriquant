@@ -1,4 +1,4 @@
-# Fabriquant Business Plan
+# Fabrknt Business Plan
 
 **The Precision Execution Stack — Solana-First, Cross-Chain Enabled**
 
@@ -28,7 +28,7 @@
 
 ### Mission Statement
 
-Fabriquant provides the precision execution infrastructure necessary for AI Agents and DeFi protocols to operate safely and efficiently across blockchains. We weave together security, performance, and privacy into a unified development stack that enables autonomous finance at scale, starting with Solana and expanding to EVM chains.
+Fabrknt provides the precision execution infrastructure necessary for AI Agents and DeFi protocols to operate safely and efficiently across blockchains. We weave together security, performance, and privacy into a unified development stack that enables autonomous finance at scale, starting with Solana and expanding to EVM chains.
 
 ### Vision
 
@@ -60,7 +60,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 
 ### Company Overview
 
-**Fabriquant** is a solopreneur-led developer infrastructure company building the cross-chain execution layer for DeFi and AI agents. Founded in 2024, we provide open-source tools and enterprise solutions that enable developers to build secure, efficient, and privacy-preserving applications. Operating as a lean, bootstrap-first organization, we lead on Solana's parallel execution while strategically expanding portable components (Guard, Risk, Flow, Patterns) to EVM chains, positioning Fabriquant as the unified execution layer for multi-chain DeFi.
+**Fabrknt** is a solopreneur-led developer infrastructure company building the cross-chain execution layer for DeFi and AI agents. Founded in 2024, we provide open-source tools and enterprise solutions that enable developers to build secure, efficient, and privacy-preserving applications. Operating as a lean, bootstrap-first organization, we lead on Solana's parallel execution while strategically expanding portable components (Guard, Risk, Flow, Patterns) to EVM chains, positioning Fabrknt as the unified execution layer for multi-chain DeFi.
 
 ### Legal Structure
 
@@ -208,7 +208,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 
 ### Core Products
 
-#### 1. Fabriquant SDK (Open Source)
+#### 1. Fabrknt SDK (Open Source)
 
 **Description**: Unified TypeScript/JavaScript SDK for Solana transaction execution
 
@@ -224,7 +224,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 
 **Target**: All Solana developers
 
-#### 2. Fabriquant Enterprise (Proprietary)
+#### 2. Fabrknt Enterprise (Proprietary)
 
 **Description**: Enterprise-grade features and support
 
@@ -241,7 +241,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 
 **Target**: Institutional clients, high-volume protocols
 
-#### 3. Fabriquant Cloud (Infrastructure)
+#### 3. Fabrknt Cloud (Infrastructure)
 
 **Description**: Managed infrastructure services
 
@@ -317,7 +317,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 -   Cross-chain liquidity access
 -   **Goal**: Enable cross-chain execution
 
-#### Phase 5: Fabriquant Mainnet (Q1 2026)
+#### Phase 5: Fabrknt Mainnet (Q1 2026)
 
 -   Decentralized vault infrastructure
 -   Governance token
@@ -384,7 +384,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 -   **Open Source**: Core SDK (MIT License)
 -   **Proprietary**: Enterprise features, advanced analytics
 -   **Patents**: Potential patents on parallel execution algorithms
--   **Trademarks**: "Fabriquant" brand and logo
+-   **Trademarks**: "Fabrknt" brand and logo
 
 ---
 
@@ -929,7 +929,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 
 1. **Platform Evolution**
 
-    - Fabriquant Mainnet launch (Year 5+)
+    - Fabrknt Mainnet launch (Year 5+)
     - Governance token (if/when needed)
     - Decentralized network (if/when needed)
 
@@ -954,7 +954,7 @@ To become the standard cross-chain execution layer for autonomous agents and ins
 
 **"Solana-First, Cross-Chain Enabled"**
 
-Fabriquant maintains leadership in Solana's parallel execution while expanding portable components (Guard, Risk, Flow, Patterns) to EVM chains. This hybrid approach maximizes market opportunity while preserving competitive differentiation.
+Fabrknt maintains leadership in Solana's parallel execution while expanding portable components (Guard, Risk, Flow, Patterns) to EVM chains. This hybrid approach maximizes market opportunity while preserving competitive differentiation.
 
 ### Why Cross-Chain?
 
@@ -1529,7 +1529,7 @@ class Guard {
 
 ## Contact Information
 
-**Company**: Fabriquant  
+**Company**: Fabrknt  
 **Website**: https://github.com/fabrknt/fabrknt  
 **Email**: [Contact Email]  
 **Twitter**: [@psyto](https://x.com/psyto)  

@@ -1,5 +1,5 @@
 /**
- * Core Fabriquant class for executing protected transactions with precision.
+ * Core Fabrknt class for executing protected transactions with precision.
  *
  * The main orchestration class that coordinates transaction execution with
  * security validation (Guard), risk assessment (Pulsar), and privacy
@@ -7,48 +7,48 @@
  *
  * @example
  * ```typescript
- * import { Fabriquant, Guard } from "@fabrknt/sdk";
+ * import { Fabrknt, Guard } from "@fabrknt/sdk";
  *
  * const guard = new Guard({
  *   maxSlippage: 0.1,
  *   mode: "block"
  * });
  *
- * await Fabriquant.execute(transaction, { with: guard });
+ * await Fabrknt.execute(transaction, { with: guard });
  * ```
  */
 
-import type { FabriquantConfig, Transaction } from "../types";
+import type { FabrkntConfig, Transaction } from "../types";
 import type { Guard } from "../guard";
 import { Pulsar } from "../pulsar";
 
 /**
- * Fabriquant orchestration class for secure transaction execution.
+ * Fabrknt orchestration class for secure transaction execution.
  *
  * Provides two main execution methods:
  * - `execute()`: Standard transaction execution with Guard validation
  * - `executePrivate()`: Privacy-enabled execution with ZK Compression
  */
-export class Fabriquant {
-    private config: FabriquantConfig;
+export class Fabrknt {
+    private config: FabrkntConfig;
 
     /**
-     * Creates a new Fabriquant instance with the specified configuration.
+     * Creates a new Fabrknt instance with the specified configuration.
      *
-     * @param config - Fabriquant configuration options
+     * @param config - Fabrknt configuration options
      * @param config.network - Solana network to use (default: "mainnet-beta")
      * @param config.rpcUrl - Custom RPC URL (optional)
      * @param config.privacy - Privacy configuration (optional)
      *
      * @example
      * ```typescript
-     * const fabriquant = new Fabriquant({
+     * const fabrknt = new Fabrknt({
      *   network: "devnet",
      *   rpcUrl: "https://api.devnet.solana.com"
      * });
      * ```
      */
-    constructor(config: FabriquantConfig = {}) {
+    constructor(config: FabrkntConfig = {}) {
         this.config = {
             network: config.network || "mainnet-beta",
             rpcUrl: config.rpcUrl,
@@ -72,7 +72,7 @@ export class Fabriquant {
      *
      * @example
      * ```typescript
-     * import { Fabriquant, Guard } from "@fabrknt/sdk";
+     * import { Fabrknt, Guard } from "@fabrknt/sdk";
      *
      * // Basic execution with Guard
      * const guard = new Guard({
@@ -80,7 +80,7 @@ export class Fabriquant {
      *   mode: "block"
      * });
      *
-     * const result = await Fabriquant.execute(transaction, { with: guard });
+     * const result = await Fabrknt.execute(transaction, { with: guard });
      * if (result.status === "executed") {
      *   console.log("Transaction executed successfully");
      * }
@@ -106,7 +106,7 @@ export class Fabriquant {
      *   instructions: []
      * };
      *
-     * const result = await Fabriquant.execute(tx, { with: guardWithRisk });
+     * const result = await Fabrknt.execute(tx, { with: guardWithRisk });
      * // Transaction automatically blocked if risk score > 0.7 or non-compliant
      * ```
      */
@@ -197,7 +197,7 @@ export class Fabriquant {
      *
      * @example
      * ```typescript
-     * import { Fabriquant, Guard, FabricCore } from "@fabrknt/sdk";
+     * import { Fabrknt, Guard, FabricCore } from "@fabrknt/sdk";
      *
      * // Optimize transaction for privacy
      * const optimized = FabricCore.optimize(transaction, {
@@ -207,7 +207,7 @@ export class Fabriquant {
      * });
      *
      * // Execute with privacy and compression
-     * const result = await Fabriquant.executePrivate(optimized, {
+     * const result = await Fabrknt.executePrivate(optimized, {
      *   with: guard,
      *   privacy: {
      *     provider: "arbor",
@@ -223,7 +223,7 @@ export class Fabriquant {
      * @example
      * ```typescript
      * // Simple private execution with defaults
-     * const result = await Fabriquant.executePrivate(transaction, {
+     * const result = await Fabrknt.executePrivate(transaction, {
      *   with: guard
      *   // Uses arbor provider and compression by default
      * });
@@ -264,23 +264,23 @@ export class Fabriquant {
     }
 
     /**
-     * Gets the current Fabriquant configuration.
+     * Gets the current Fabrknt configuration.
      *
-     * @returns The Fabriquant configuration object
+     * @returns The Fabrknt configuration object
      *
      * @example
      * ```typescript
-     * const fabriquant = new Fabriquant({
+     * const fabrknt = new Fabrknt({
      *   network: "devnet",
      *   rpcUrl: "https://api.devnet.solana.com"
      * });
      *
-     * const config = fabriquant.getConfig();
+     * const config = fabrknt.getConfig();
      * console.log(`Network: ${config.network}`);
      * console.log(`RPC URL: ${config.rpcUrl}`);
      * ```
      */
-    public getConfig(): FabriquantConfig {
+    public getConfig(): FabrkntConfig {
         return this.config;
     }
 }

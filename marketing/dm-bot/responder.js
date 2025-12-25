@@ -2,7 +2,7 @@
 
 /**
  * AI-powered DM responder for X/Twitter
- * Responds to technical questions about Fabriquant
+ * Responds to technical questions about Fabrknt
  */
 
 import Anthropic from '@anthropic-ai/sdk';
@@ -66,10 +66,10 @@ function initClients() {
  * Build system prompt with knowledge base context
  */
 function buildSystemPrompt(kb) {
-  return `You are an AI assistant for Fabriquant, a precision execution stack for Solana development.
+  return `You are an AI assistant for Fabrknt, a precision execution stack for Solana development.
 
 Your role:
-- Answer technical questions about Fabriquant and its components
+- Answer technical questions about Fabrknt and its components
 - Provide code examples when helpful
 - Guide developers to the right documentation
 - Be helpful, concise, and technically accurate
@@ -92,7 +92,7 @@ Response Guidelines:
 1. Be friendly but professional
 2. Use code snippets when relevant (keep them short)
 3. Always provide links to docs for deeper learning
-4. If asked about competitors, focus on Fabriquant's unique value
+4. If asked about competitors, focus on Fabrknt's unique value
 5. If asked about support, point to GitHub issues or community channels
 6. Never make up features or capabilities - stick to documented facts
 

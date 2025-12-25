@@ -5,7 +5,7 @@ Get your AI-powered marketing running in 15 minutes.
 ## Prerequisites
 
 - Node.js 18+ installed
-- Twitter/X account for Fabriquant
+- Twitter/X account for Fabrknt
 - Credit card for Anthropic API (pay-as-you-go)
 
 ## Step 1: API Keys (5 min)
@@ -36,7 +36,7 @@ Get your AI-powered marketing running in 15 minutes.
 ## Step 2: Install (2 min)
 
 ```bash
-cd /Users/hiroyusai/src/fabriquant/marketing
+cd /Users/hiroyusai/src/fabrknt/marketing
 
 # Install dependencies
 npm install
@@ -124,7 +124,7 @@ Check your Twitter - you should see the tweet!
 npm run dm:bot
 ```
 
-Send a DM to your account asking "What is Fabriquant?" - check if it responds.
+Send a DM to your account asking "What is Fabrknt?" - check if it responds.
 
 ### Option B: Continuous (recommended)
 
@@ -133,13 +133,13 @@ Send a DM to your account asking "What is Fabriquant?" - check if it responds.
 npm install -g pm2
 
 # Start the bot
-pm2 start dm-bot/responder.js --name fabriquant-dm-bot -- --continuous
+pm2 start dm-bot/responder.js --name fabrknt-dm-bot -- --continuous
 
 # Check it's running
 pm2 status
 
 # View logs
-pm2 logs fabriquant-dm-bot
+pm2 logs fabrknt-dm-bot
 ```
 
 The bot now runs 24/7 checking for DMs every 5 minutes.
@@ -160,7 +160,7 @@ npm run review:content
 
 **DM bot**:
 - Running 24/7 via PM2
-- Check logs weekly: `pm2 logs fabriquant-dm-bot`
+- Check logs weekly: `pm2 logs fabrknt-dm-bot`
 
 ## Quick Reference
 
@@ -170,7 +170,7 @@ npm run review:content
 | Review content | `npm run review:content` |
 | Post now | `npm run post:approved -- --force` |
 | Check DMs once | `npm run dm:bot` |
-| View PM2 logs | `pm2 logs fabriquant-dm-bot` |
+| View PM2 logs | `pm2 logs fabrknt-dm-bot` |
 | Rebuild KB | `npm run setup:kb` |
 
 ## Troubleshooting

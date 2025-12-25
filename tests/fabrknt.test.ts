@@ -1,14 +1,14 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { Fabriquant } from '../src/core/fabriquant';
+import { Fabrknt } from '../src/core/fabrknt';
 import { Guard } from '../src/guard';
 import { Pulsar } from '../src/pulsar';
 import type { Transaction } from '../src/types';
 
-describe('Fabriquant', () => {
+describe('Fabrknt', () => {
   describe('Configuration', () => {
     it('should create instance with default config', () => {
-      const fabriquant = new Fabriquant();
-      const config = fabriquant.getConfig();
+      const fabrknt = new Fabrknt();
+      const config = fabrknt.getConfig();
 
       expect(config.network).toBe('mainnet-beta');
       expect(config.rpcUrl).toBeUndefined();
@@ -16,7 +16,7 @@ describe('Fabriquant', () => {
     });
 
     it('should create instance with custom config', () => {
-      const fabriquant = new Fabriquant({
+      const fabrknt = new Fabrknt({
         network: 'devnet',
         rpcUrl: 'https://api.devnet.solana.com',
         privacy: {
@@ -25,7 +25,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const config = fabriquant.getConfig();
+      const config = fabrknt.getConfig();
       expect(config.network).toBe('devnet');
       expect(config.rpcUrl).toBe('https://api.devnet.solana.com');
       expect(config.privacy?.provider).toBe('arbor');
@@ -33,8 +33,8 @@ describe('Fabriquant', () => {
     });
 
     it('should return config copy via getConfig()', () => {
-      const fabriquant = new Fabriquant({ network: 'devnet' });
-      const config = fabriquant.getConfig();
+      const fabrknt = new Fabrknt({ network: 'devnet' });
+      const config = fabrknt.getConfig();
 
       expect(config).toBeDefined();
       expect(config.network).toBe('devnet');
@@ -53,7 +53,7 @@ describe('Fabriquant', () => {
     });
 
     it('should execute transaction without Guard', async () => {
-      const result = await Fabriquant.execute(tx);
+      const result = await Fabrknt.execute(tx);
 
       expect(result.status).toBe('executed');
       expect(result.id).toBe('test-tx');
@@ -65,7 +65,7 @@ describe('Fabriquant', () => {
         mode: 'block',
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('executed');
     });
@@ -79,7 +79,7 @@ describe('Fabriquant', () => {
       // Activate emergency stop to force validation failure
       guard.activateEmergencyStop();
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('failed');
     });
@@ -90,7 +90,7 @@ describe('Fabriquant', () => {
         metadata: { custom: 'data' },
       };
 
-      const result = await Fabriquant.execute(txWithMetadata);
+      const result = await Fabrknt.execute(txWithMetadata);
 
       expect(result.metadata).toEqual({ custom: 'data' });
       expect(result.status).toBe('executed');
@@ -137,7 +137,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('executed');
       expect(mockGetBatchRiskMetrics).toHaveBeenCalledWith(
@@ -170,7 +170,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('failed');
 
@@ -198,7 +198,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('failed');
 
@@ -217,7 +217,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('executed');
 
@@ -236,7 +236,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       expect(result.status).toBe('failed');
 
@@ -264,7 +264,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const result = await Fabriquant.execute(tx, { with: guard });
+      const result = await Fabrknt.execute(tx, { with: guard });
 
       // In warn mode, transaction should still execute
       expect(result.status).toBe('executed');
@@ -289,7 +289,7 @@ describe('Fabriquant', () => {
         },
       });
 
-      const result = await Fabriquant.execute(txWithoutAssets, { with: guard });
+      const result = await Fabrknt.execute(txWithoutAssets, { with: guard });
 
       expect(result.status).toBe('executed');
       expect(mockGetBatchRiskMetrics).not.toHaveBeenCalled();
@@ -310,7 +310,7 @@ describe('Fabriquant', () => {
     });
 
     it('should execute private transaction with default settings', async () => {
-      const result = await Fabriquant.executePrivate(tx);
+      const result = await Fabrknt.executePrivate(tx);
 
       expect(result.status).toBe('executed');
       expect(result.privacyMetadata).toBeDefined();
@@ -324,7 +324,7 @@ describe('Fabriquant', () => {
         mode: 'block',
       });
 
-      const result = await Fabriquant.executePrivate(tx, { with: guard });
+      const result = await Fabrknt.executePrivate(tx, { with: guard });
 
       expect(result.status).toBe('executed');
       expect(result.privacyMetadata?.requiresPrivacy).toBe(true);
@@ -337,13 +337,13 @@ describe('Fabriquant', () => {
       });
       guard.activateEmergencyStop();
 
-      const result = await Fabriquant.executePrivate(tx, { with: guard });
+      const result = await Fabrknt.executePrivate(tx, { with: guard });
 
       expect(result.status).toBe('failed');
     });
 
     it('should respect compression setting', async () => {
-      const result = await Fabriquant.executePrivate(tx, {
+      const result = await Fabrknt.executePrivate(tx, {
         privacy: { compression: false },
       });
 
@@ -351,7 +351,7 @@ describe('Fabriquant', () => {
     });
 
     it('should default compression to true when not specified', async () => {
-      const result = await Fabriquant.executePrivate(tx, {
+      const result = await Fabrknt.executePrivate(tx, {
         privacy: { provider: 'arbor' },
       });
 
@@ -359,7 +359,7 @@ describe('Fabriquant', () => {
     });
 
     it('should accept arbor privacy provider', async () => {
-      const result = await Fabriquant.executePrivate(tx, {
+      const result = await Fabrknt.executePrivate(tx, {
         privacy: { provider: 'arbor', compression: true },
       });
 
@@ -368,7 +368,7 @@ describe('Fabriquant', () => {
     });
 
     it('should accept light privacy provider', async () => {
-      const result = await Fabriquant.executePrivate(tx, {
+      const result = await Fabrknt.executePrivate(tx, {
         privacy: { provider: 'light', compression: true },
       });
 
@@ -382,7 +382,7 @@ describe('Fabriquant', () => {
         metadata: { original: 'data' },
       };
 
-      const result = await Fabriquant.executePrivate(txWithData);
+      const result = await Fabrknt.executePrivate(txWithData);
 
       expect(result.id).toBe(txWithData.id);
       expect(result.metadata).toEqual({ original: 'data' });
@@ -395,7 +395,7 @@ describe('Fabriquant', () => {
         metadata: { custom: 'value' },
       };
 
-      const result = await Fabriquant.executePrivate(txWithMetadata, {
+      const result = await Fabrknt.executePrivate(txWithMetadata, {
         privacy: { compression: true },
       });
 
@@ -414,7 +414,7 @@ describe('Fabriquant', () => {
         instructions: [],
       };
 
-      const result = await Fabriquant.execute(tx);
+      const result = await Fabrknt.execute(tx);
 
       expect(result).toBeDefined();
       expect(result.status).toBe('executed');
@@ -427,7 +427,7 @@ describe('Fabriquant', () => {
         instructions: [],
       };
 
-      const result = await Fabriquant.executePrivate(tx);
+      const result = await Fabrknt.executePrivate(tx);
 
       expect(result).toBeDefined();
       expect(result.status).toBe('executed');

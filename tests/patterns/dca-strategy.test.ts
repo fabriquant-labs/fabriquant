@@ -4,7 +4,7 @@ import { Guard } from '../../src/guard';
 import type { DCAConfig } from '../../src/patterns/ai-agents/dca-strategy';
 import type { Token, TradingPair } from '../../src/patterns/types';
 
-// Mock Loom and Fabriquant
+// Mock Loom and Fabrknt
 vi.mock('../../src/loom', () => ({
   Loom: {
     weave: vi.fn(async (config: any) => ({
@@ -14,8 +14,8 @@ vi.mock('../../src/loom', () => ({
   },
 }));
 
-vi.mock('../../src/core/fabriquant', () => ({
-  Fabriquant: {
+vi.mock('../../src/core/fabrknt', () => ({
+  Fabrknt: {
     execute: vi.fn(async () => ({ success: true })),
   },
 }));
@@ -361,7 +361,7 @@ describe('DCAStrategy', () => {
 
   describe('Guard Integration', () => {
     it('should execute with Guard when provided', async () => {
-      const { Fabriquant } = await import('../../src/core/fabriquant');
+      const { Fabrknt } = await import('../../src/core/fabrknt');
       const guard = new Guard({ mode: 'block', maxSlippage: 0.02 });
 
       const strategy = new DCAStrategy({
@@ -372,7 +372,7 @@ describe('DCAStrategy', () => {
 
       await strategy.execute();
 
-      expect(Fabriquant.execute).toHaveBeenCalled();
+      expect(Fabrknt.execute).toHaveBeenCalled();
     });
   });
 

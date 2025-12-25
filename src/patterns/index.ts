@@ -1,5 +1,5 @@
 /**
- * Fabriquant Pattern Library
+ * Fabrknt Pattern Library
  *
  * Pre-built execution patterns for common DeFi and AI agent use cases.
  *

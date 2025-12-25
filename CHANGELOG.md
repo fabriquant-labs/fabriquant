@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Fabriquant SDK will be documented in this file.
+All notable changes to the Fabrknt SDK will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Major Rebranding
 
-This release represents a complete rebranding of the project from "Fabricant" to "Fabriquant" with updated naming conventions for all components.
+This release represents a complete rebranding of the project from "Fabricant" to "Fabrknt" with updated naming conventions for all components.
 
 #### Project Naming
-- **BREAKING**: Renamed project from `fabricant` to `fabriquant`
+- **BREAKING**: Renamed project from `fabricant` to `fabrknt`
 - **BREAKING**: Package name changed from `@fabricant/sdk` to `@fabrknt/sdk`
 - Updated all documentation and examples to reflect new branding
 
@@ -25,7 +25,7 @@ The component naming has been simplified and clarified:
 | Fabric Pulse | Risk | Class still exported as `Pulsar` |
 | Fabric Weave | Privacy | Provider identifier remains `"arbor"` |
 | Fabric Core | FabricCore | ✅ No change needed |
-| Fabricant Suite | Fabriquant Suite | Updated to new name |
+| Fabricant Suite | Fabrknt Suite | Updated to new name |
 
 **Note**: Backward compatibility is maintained for the `Pulsar` class export and `"arbor"` provider identifier to minimize breaking changes for early adopters.
 
@@ -33,9 +33,9 @@ The component naming has been simplified and clarified:
 
 #### Core Features
 - Unified SDK structure consolidating Guard, Risk (Pulsar), Privacy (Arbor), Loom, and FabricCore
-- Main `Fabriquant` orchestration class for transaction execution
-- `Fabriquant.execute()` - Execute transactions with Guard validation
-- `Fabriquant.executePrivate()` - Execute privacy-enabled transactions with ZK Compression
+- Main `Fabrknt` orchestration class for transaction execution
+- `Fabrknt.execute()` - Execute transactions with Guard validation
+- `Fabrknt.executePrivate()` - Execute privacy-enabled transactions with ZK Compression
 
 #### Guard (Security Layer)
 - Transaction validation with configurable security rules
@@ -70,7 +70,7 @@ The component naming has been simplified and clarified:
 ### Changed
 
 #### Breaking Changes
-- Project name: `fabricant` → `fabriquant`
+- Project name: `fabricant` → `fabrknt`
 - Package name: `@fabricant/sdk` → `@fabrknt/sdk`
 - Import paths updated to reflect new package name
 
@@ -96,9 +96,9 @@ The component naming has been simplified and clarified:
 
 #### Project Structure
 ```
-fabriquant/
+fabrknt/
 ├── src/
-│   ├── core/           # Fabriquant orchestration class
+│   ├── core/           # Fabrknt orchestration class
 │   ├── guard/          # Security layer (Guard)
 │   ├── pulsar/         # Risk assessment (Risk/Pulsar)
 │   ├── fabric/         # Performance & Privacy (FabricCore)
@@ -142,7 +142,7 @@ fabriquant/
 - ZK proof generation and verification
 - Shielded state management
 
-#### Phase 3: Fabriquant Mainnet (Future)
+#### Phase 3: Fabrknt Mainnet (Future)
 - Decentralized autonomous vault infrastructure
 - Full stack deployment on Solana mainnet
 

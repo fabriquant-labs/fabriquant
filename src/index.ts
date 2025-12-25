@@ -17,13 +17,13 @@
  *
  * @example
  * ```typescript
- * import { Fabriquant, Guard } from "@fabrknt/sdk";
+ * import { Fabrknt, Guard } from "@fabrknt/sdk";
  *
  * const guard = new Guard({ maxSlippage: 0.1, mode: "block" });
- * await Fabriquant.execute(transaction, { with: guard });
+ * await Fabrknt.execute(transaction, { with: guard });
  * ```
  */
-export { Fabriquant } from "./core/fabriquant";
+export { Fabrknt } from "./core/fabrknt";
 
 /**
  * Security layer for transaction validation and protection.
@@ -112,14 +112,14 @@ export { FabricCore } from "./fabric";
 export { Pulsar } from "./pulsar";
 
 /**
- * Configuration and type definitions for the Fabriquant SDK.
+ * Configuration and type definitions for the Fabrknt SDK.
  *
  * Includes interfaces for Guard, Risk (Pulsar), Privacy, Loom, transactions,
  * and validation results.
  */
 export type {
-    /** Configuration for the main Fabriquant orchestrator */
-    FabriquantConfig,
+    /** Configuration for the main Fabrknt orchestrator */
+    FabrkntConfig,
     /** Configuration for the Guard security layer */
     GuardConfig,
     /** Configuration for the Loom liquidity engine */
