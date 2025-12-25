@@ -46,7 +46,7 @@
     "bugs": {
         "url": "https://github.com/fabrknt/fabrknt/issues"
     },
-    "homepage": "https://github.com/fabrknt/fabrknt",
+    "homepage": "https://fabrknt.com",
     "devDependencies": {
         "@types/node": "^20.11.5",
         "@typescript-eslint/eslint-plugin": "^6.19.0",
