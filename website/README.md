@@ -4,7 +4,36 @@ Official website for Fabrknt - The Precision Execution Stack for Solana.
 
 ## 🚀 Quick Deploy
 
-### Deploy to Vercel (Recommended)
+### Deploy to AWS Amplify (Recommended)
+
+[![Deploy to AWS Amplify](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home)
+
+#### Using AWS Amplify Console:
+
+1. Go to [AWS Amplify Console](https://console.aws.amazon.com/amplify/home)
+2. Click "New app" → "Host web app"
+3. Connect your GitHub repository
+4. Select the branch (e.g., `main`)
+5. Set the app root directory to `website`
+6. Review build settings (already configured via `amplify.yml`)
+7. Click "Save and deploy"
+
+#### Using AWS Amplify CLI:
+
+```bash
+# Install AWS Amplify CLI
+npm install -g @aws-amplify/cli
+
+# Initialize and deploy
+cd website
+amplify init
+amplify add hosting
+amplify publish
+```
+
+The `amplify.yml` file is already configured for static site deployment.
+
+### Deploy to Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/fabrknt/fabrknt/tree/main/website)
 
@@ -49,8 +78,9 @@ website/
 │   ├── js/
 │   │   └── main.js        # Interactive features
 │   └── images/            # Images and logos
-├── vercel.json            # Vercel configuration
-├── netlify.toml           # Netlify configuration
+├── amplify.yml            # AWS Amplify configuration (primary)
+├── vercel.json            # Vercel configuration (alternative)
+├── netlify.toml           # Netlify configuration (alternative)
 ├── .nojekyll              # GitHub Pages configuration
 └── README.md              # This file
 ```
@@ -119,6 +149,24 @@ Then visit: `http://localhost:8000`
 ## 🌐 Domain Configuration
 
 ### Configure fabrknt.com
+
+#### For AWS Amplify:
+
+1. Go to your Amplify app in the AWS Console
+2. Navigate to "Domain management" in the left sidebar
+3. Click "Add domain"
+4. Enter your domain: `fabrknt.com`
+5. Follow AWS Amplify's domain verification steps
+6. AWS will automatically configure SSL/TLS certificates
+7. Update your DNS records as instructed by Amplify:
+   - Add CNAME records for your domain
+   - AWS Amplify will provide the exact values
+
+**Note**: AWS Amplify automatically handles:
+- SSL/TLS certificates (via AWS Certificate Manager)
+- HTTPS redirects
+- CDN distribution (via CloudFront)
+- Custom domain management
 
 #### For Vercel:
 
