@@ -4,17 +4,24 @@ frontend:
     preBuild:
       commands:
         - echo "Preparing static site deployment"
-        - cd website
+        - ls -la
+        - ls -la website/
     build:
       commands:
         - echo "No build required - static site"
+        - cp -r website/* ./ || true
+        - ls -la
     postBuild:
       commands:
         - echo "Build completed successfully"
+        - ls -la
   artifacts:
-    baseDirectory: website
+    baseDirectory: /
     files:
       - "**/*"
+      - "!website/**/*"
+      - "!.git/**/*"
+      - "!README.md"
   cache:
     paths: []
 
