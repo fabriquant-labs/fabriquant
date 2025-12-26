@@ -9,11 +9,15 @@ document.querySelectorAll('.copy-btn').forEach(button => {
             // Visual feedback
             const originalText = button.textContent;
             button.textContent = 'Copied!';
-            button.style.background = '#10B981';
+            button.style.background = '#171717';
+            button.style.color = '#FFFFFF';
+            button.style.borderColor = '#171717';
 
             setTimeout(() => {
                 button.textContent = originalText;
                 button.style.background = '';
+                button.style.color = '';
+                button.style.borderColor = '';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy:', err);
@@ -67,34 +71,38 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
-        nav.style.background = 'rgba(15, 23, 42, 0.95)';
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
     } else {
-        nav.style.background = 'rgba(15, 23, 42, 0.8)';
+        nav.style.background = 'rgba(255, 255, 255, 0.8)';
+        nav.style.boxShadow = 'none';
     }
 
     lastScroll = currentScroll;
 });
 
-// Animate elements on scroll
+// Animate elements on scroll with staggered delays
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100);
         }
     });
 }, observerOptions);
 
-// Observe feature cards and use case cards
-document.querySelectorAll('.feature-card, .use-case-card').forEach(card => {
+// Observe feature cards, use case cards, and quickstart steps
+document.querySelectorAll('.feature-card, .use-case-card, .quickstart-step').forEach((card, index) => {
     card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    card.style.transform = 'translateY(40px)';
+    card.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
     observer.observe(card);
 });
 
@@ -106,14 +114,15 @@ style.textContent = `
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 70px;
+            top: 80px;
             left: 0;
             right: 0;
-            background: rgba(15, 23, 42, 0.98);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
             padding: 2rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #E5E5E5;
             gap: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .mobile-menu-toggle.active span:nth-child(1) {
@@ -132,7 +141,7 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Console easter egg
-console.log('%c⚡ Fabrknt', 'font-size: 24px; font-weight: bold; color: #8B5CF6;');
-console.log('%cThe Precision Execution Stack', 'font-size: 14px; color: #A78BFA;');
-console.log('%c\nBuilt with ❤️  by psyto', 'font-size: 12px; color: #94A3B8;');
-console.log('%c\nContribute: https://github.com/fabrknt/fabrknt', 'font-size: 12px; color: #10B981;');
+console.log('%c⚡ Fabrknt', 'font-size: 24px; font-weight: bold; color: #171717;');
+console.log('%cThe Precision Execution Stack', 'font-size: 14px; color: #525252;');
+console.log('%c\nBuilt with ❤️  by psyto', 'font-size: 12px; color: #737373;');
+console.log('%c\nContribute: https://github.com/fabrknt/fabrknt', 'font-size: 12px; color: #404040;');
